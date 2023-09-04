@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :trips do
+    member do
+      resources :tickets, only: %i[index new create]
+      resources :accomodations, only: %i[index new create]
+      resources :groups, only: %i[new create]
+    end
+  end
+
+  resources :tickets, except: %i[index new create]
+  resources :accomodations, except: %i[index new create]
+  resources :groups, only: :destroy
 end
