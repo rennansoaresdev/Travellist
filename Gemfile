@@ -30,6 +30,9 @@ gem "jbuilder"
 # Psych - version 4.0.6 last working version
 gem 'psych', '~>4.0.6'
 
+# Country select
+gem 'country_select'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
