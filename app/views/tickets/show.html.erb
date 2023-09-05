@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Ticket Details</h1>
+  </div>
+  <div class="card-body">
+    <p><strong>URL:</strong> <a href="<%= @ticket.url %>" target="_blank"><%= @ticket.url %></a></p>
+    <p><strong>Start Time:</strong> <%= @ticket.start_time %></p>
+    <p><strong>End Time:</strong> <%= @ticket.end_time %></p>
+    <p><strong>Origin:</strong> <%= @ticket.origin %></p>
+    <p><strong>Destination:</strong> <%= @ticket.destination %></p>
+    <p><strong>Seat:</strong> <%= @ticket.seat %></p>
+    <p><strong>Gate:</strong> <%= @ticket.gate %></p>
+    <p><strong>Price:</strong> <%= @ticket.price %></p>
+    <p><strong>Company Name:</strong> <%= @ticket.company_name %></p>
+  </div>
+</div>
+<%= link_to "Edit Ticket", edit_ticket_path(@ticket), class: "btn btn-primary" %>
+<%= link_to "Back to Tickets", trip_tickets_path(@ticket.trip), class: "btn btn-primary" %>

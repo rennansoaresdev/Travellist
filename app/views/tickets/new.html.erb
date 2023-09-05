@@ -1,0 +1,26 @@
+
+
+<div class="card">
+  <div class="card-header">
+    <h1>Create a New Ticket</h1>
+  </div><br>
+  <div class="card-body">
+    <%= simple_form_for [@trip, @ticket ] do |form| %>
+      <%= form.error_notification %>
+
+      <%= form.input :url %>
+      <%= form.input :start_time %>
+      <%= form.input :end_time %>
+      <%= form.input :origin %>
+      <%= form.input :destination %>
+      <%= form.input :seat, required: false %>
+      <%= form.input :gate, required: false %>
+      <%= form.input :price %>
+      <%= form.input :company_name %>
+
+      <div class="actions"><br>
+        <%= form.button :submit, "Create Ticket", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
