@@ -1,0 +1,15 @@
+<h1>Detalhes da viagem</h1>
+
+<div class="card w-50">
+  <div class="card-body">
+    <h5 class="card-title">Nº pedido: <%= @trip.id %></h5><br>
+    <h6 class="card-subtitle mb-2 text-muted">Passsagens Compradas:</h6>
+    <ul class="list-group">
+      <% @trip.trips.each do |trip| %>
+        <li class="list-group-item">
+          <%= trip.name %> I dont know- <%=  %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
