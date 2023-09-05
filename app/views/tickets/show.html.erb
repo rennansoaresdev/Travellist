@@ -14,5 +14,5 @@
     <p><strong>Company Name:</strong> <%= @ticket.company_name %></p>
   </div>
 </div>
-
-<%= link_to "Back to Tickets", trip_tickets_path(@ticket.trip) %>
+<%= link_to "Edit Ticket", edit_ticket_path(@ticket), class: "btn btn-primary" %>
+<%= link_to "Back to Tickets", trip_tickets_path(@ticket.trip), class: "btn btn-primary" %>
