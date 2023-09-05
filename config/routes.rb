@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :trips do
-    member do
+    #member do
       resources :tickets, only: %i[index new create]
       resources :accomodations, only: %i[index new create]
       resources :groups, only: %i[new create]
-    end
+    #end
   end
 
   resources :tickets, except: %i[index new create]
