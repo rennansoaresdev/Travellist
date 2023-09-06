@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Nova acomodação</h1>
+  </div><br>
+  <div class="card-body">
+    <%= simple_form_for [@trip, @accommodation] do |form| %>
+      <%= form.error_notification %>
+
+      <%= form.input :url %>
+      <%= form.input :checkin_time %>
+      <%= form.input :checkout_time %>
+      <%= form.input :type %>
+      <%= form.input :capacity %>
+      <%= form.input :price %>
+      <%= form.input :name %>
+      <%= form.input :address %>
+
+      <div class="actions"><br>
+        <%= form.button :submit, "Criar acomodação", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

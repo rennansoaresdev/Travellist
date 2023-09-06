@@ -1,0 +1,10 @@
+<h1>Minhas Acomodações</h1>
+<br>
+
+<h2>Acomodações para a Viagem: <%= link_to (@trip.name), accommodation_path(@accommodations)%></h2><br>
+
+
+<%= link_to "Nova Acomodação", new_trip_accommodation_path, class: 'btn btn-primary' %>
+
+
+<%= link_to "Voltar para a Viagem", @trip, class: 'btn btn-primary' %>
