@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   resources :trips do
     resources :tickets, only: %i[index new create]
-    resources :accomodations, only: %i[index new create]
+    resources :accommodations, only: %i[index new create]
     resources :groups, only: %i[new create]
   end
 
   resources :tickets, except: %i[index new create]
-  resources :accomodations, except: %i[index new create]
+  resources :accommodations, except: %i[index new create]
   resources :groups, only: :destroy
 end
