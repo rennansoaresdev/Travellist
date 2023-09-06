@@ -3,20 +3,13 @@
   <% @tickets.each do |ticket| %>
   <div class='col-md-6 col-lg-3'>
     <div class="card border-2 shadow rounded my-3" style="max-height: 100%, width: 18rem;">
-        <% if tickets.photo.attached? %>
-          <%= image_tag 'placeholder.jpg', height: 400, width: 300, crop: :fill, class: 'card-img-top' %>
-        <% else %>
-          <%= image_tag 'placeholder.jpg', class: 'card-img-top' %>
-        <% end %>
+
         <div class="d-flex flex-column p-3">
-          <h5 class='card-title'><%= ticket.name %></h5>
-          <p class='card-text'><strong><%= number_to_currency ticket.price, unit: 'R$ ',
-                                   precision: 2,
-                                   separator: ',',
-                                   delimiter: '.' %></strong></p>
+          <h5 class='card-title'><%= ticket.destination %></h5>
+          <p class='card-text'><strong><%= ticket.start_time.strftime("%d/%m/%Y") %></strong></p>
         </div>
-        <%= link_to tickets_id_path(product), class: 'btn btn-primary' do %>
-          <%= icon('fa-solid', 'magnifying-glass')%> Ver detalhes
+        <%= link_to ticket_path(ticket), class: 'btn btn-warning' do %>
+          Ver detalhes
         <% end %>
     </div>
   </div>
