@@ -1,4 +1,11 @@
 class TicketsController < ApplicationController
+
+  # Listagem de passagens: Se usuário estiver logado
+
+  def index
+    @tickets = Ticket.all
+  end
+
   def new
     @ticket = Ticket.new
     @trip = Trip.find(params[:trip_id])
@@ -32,7 +39,7 @@ class TicketsController < ApplicationController
       render :edit
     end
   end
-  
+
   private
 
   def ticket_params
