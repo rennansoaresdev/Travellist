@@ -97,6 +97,10 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     concurrent-ruby (1.2.2)
+    countries (5.6.0)
+      unaccent (~> 0.3)
+    country_select (8.0.2)
+      countries (~> 5.0)
     crass (1.0.6)
     date (3.3.3)
     debug (1.8.0)
@@ -117,7 +121,7 @@ GEM
     ffi (1.15.5)
     font-awesome-sass (6.4.2)
       sassc (~> 2.0)
-    globalid (1.2.0)
+    globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
@@ -125,9 +129,9 @@ GEM
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.6.0)
-    irb (1.8.0)
-      rdoc (~> 6.5)
-      reline (>= 0.3.6)
+    irb (1.8.1)
+      rdoc
+      reline (>= 0.3.8)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -241,6 +245,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unaccent (0.4.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -269,6 +274,7 @@ DEPENDENCIES
   bootsnap
   bootstrap (~> 5.2)
   capybara
+  country_select
   debug
   devise
   dotenv-rails
