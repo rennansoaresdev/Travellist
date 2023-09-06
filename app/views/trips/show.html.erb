@@ -1,0 +1,52 @@
+<div class="container">
+  <h1><%= @trip.name %></h1>
+
+  <p>Esse é o #show da viagem. Mega dashboard!</p>
+
+  <h2><%= link_to 'Passagens', trip_tickets_path(@trip), class: 'text-decoration-none' %></h2>
+
+  <% if @trip.tickets.present? %>
+    <ul>
+      <% @trip.tickets.order(:updated_at).take(2).each do |ticket| %>
+        <li>
+          <p>Passagem para: <%= ticket.destination %></p>
+          <p>Saindo de: <%= ticket.origin %></p>
+          <p>Duração: <%= "#{ticket.duration[:hours]}h" %><%= "#{ticket.duration[:minutes]}min" unless ticket.duration[:minutes].blank? %></p>
+          <p>Preço pesquisado: <%= number_to_currency ticket.price, unit: 'R$ ', precision: 2, separator: ',', delimiter: '.' %></p>
+
+          <p><%= link_to 'Visitar site', ticket.url, target: '_blank', class: 'btn btn-primary rounded-5' %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div>
+      <p>Não há passagens adicionadas à sua viagem.</p>
+      <%= link_to 'Nova passagem', new_trip_ticket_path(@trip), class: 'btn btn-primary rounded-5'  %>
+    </div>
+  <% end %>
+
+  <h2><%= link_to 'Acomodações', trip_accommodations_path(@trip), class: 'text-decoration-none' %></h2>
+
+  <% if @trip.accommodations.present? %>
+    <ul>
+      <% @trip.accommodations.order(:updated_at).take(2).each do |accommodation| %>
+        <li>
+          <h5><%= accommodation.name %></h5>
+          <p>Espaço para <%= accommodation.capacity %> pessoas</p>
+          <p>Tipo: <%= accommodation.type %></p>
+          <p><%= link_to 'Visitar site', accommodation.url, target: '_blank', class: 'btn btn-primary rounded-5' %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div>
+      <p>Não há acomodações adicionadas à sua viagem.</p>
+      <%= link_to 'Nova acomodação', new_trip_accommodation_path(@trip), class: 'btn btn-primary rounded-5'  %>
+    </div>
+  <% end %>
+
+  <h2>Detalhes da viagem</h2>
+  <p>Destino: <%= @trip.destination %></p>
+  <p>Início: <%= @trip.start_date %></p>
+  <p>Fim: <%= @trip.end_date %></p>
+</div>
