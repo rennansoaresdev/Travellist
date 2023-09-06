@@ -1,22 +1,29 @@
-<h1 class='text-center mt-5'>Minhas Viagens</h1>
+<div class="container">
+  <h1>Minhas viagens</h1>
+  <p><%= "#{@trips.count} viagens planejadas" %></p>
 
-  <div class='col-md-6 col-lg-2'>
-
-    <div class="card border-2 shadow rounded m-3" style="width: 20rem;">
-
-        <%= image_tag 'placeholder.jpeg'%>
-
-        <div class="p-3">
-        <h3 class='card-title'>Role cuz parsa</h3>
-          <p class='card-text' style='font-size: 12px'>Destino: </p>
-          <h5 class='card-title'>Fortaleza</h5>
-          <p class='card-text' style='font-size: 12px'>Quando? </p>
-          <p class='card-text'>Do: dia tall ao: dia tall</p>
-          <p class='card-text' style='font-size: 12px'>Quando? </p>
-          <p class='card-text'>Do: dia tall ao: dia tall</p>
-          <p class='card-text' style='font-size: 12px'>Quando? </p>
-          <p class='card-text'>Do: dia tall ao: dia tall</p>
-
+  <ul class='d-flex gap-3'>
+    <% @trips.order(:updated_at).each do |trip| %>
+      <li class='card p-3 border-0 shadow rounded'>
+        <p>Nome: <%= trip.name %></p>
+        <p>Início: <%= trip.start_date %></p>
+        <p>Fim: <%= trip.end_date %></p>
+        <p>Destino: <%= trip.destination %></p>
+        <%# Verifica se o budget foi informado e, se não foi, exibe 'não informado' %>
+        <p>Budget por membro: <%= trip.budget_per_user || 'não informado' %></p>
+        <p>Criado por: <%= trip.owner.first_name %></p>
+        <p>Atualizado em: <%= trip.updated_at %></p>
+        <div class="row gy-1 gx-1 justify-content-between">
+          <%= link_to 'Ver detalhes', trip_path(trip), class: 'btn btn-primary' %>
+          <%= link_to 'Editar', edit_trip_path(trip), class: 'btn btn-primary col-6' %>
+          <%= link_to 'Deletar', trip_path(trip),
+                      class: 'btn btn-danger col-6',
+                      data: { turbo_method: :delete,
+                              turbo_confirm: "Deseja deletar #{trip.name}?"} %>
         </div>
-    </div>
-  </div>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Criar viagem', new_trip_path, class: 'btn btn-primary' %>
+</div>

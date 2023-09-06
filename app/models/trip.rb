@@ -5,7 +5,8 @@ class Trip < ApplicationRecord
   has_many :tickets
   belongs_to :owner, class_name: 'User'
 
-  validates :name, :start_date, :destination, presence: true
+  validates :name, :destination, presence: true
+  validates :start_date, comparison: { greater_than: Date.today }
   validates :end_date, presence: true, comparison: { greater_than: :start_date }
-  validates :budget_per_user, numericality: { greater_than: 0 }
+  validates :budget_per_user, numericality: { greater_than: 0 }, allow_blank: true
 end

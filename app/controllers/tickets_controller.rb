@@ -1,9 +1,8 @@
 class TicketsController < ApplicationController
-
+  before_action :set_ticket, only: %i[show edit update]
   # Listagem de passagens: Se usuário estiver logado
-
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.where(trip_id: params[:trip_id])
   end
 
   def new
@@ -12,7 +11,6 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
   end
 
   def create
@@ -27,12 +25,9 @@ class TicketsController < ApplicationController
   end
 
   def edit
-    @ticket = Ticket.find(params[:id])
   end
 
   def update
-    @ticket = Ticket.find(params[:id])
-
     if @ticket.update(ticket_params)
       redirect_to @ticket, notice: 'Ticket was successfully updated.'
     else
@@ -44,5 +39,9 @@ class TicketsController < ApplicationController
 
   def ticket_params
     params.require(:ticket).permit(:url, :start_time, :end_time, :origin, :destination, :seat, :gate, :price, :company_name)
+  end
+
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
   end
 end
