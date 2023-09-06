@@ -1,27 +1,29 @@
-<h1>Minhas viagens</h1>
-<p><%= "#{@trips.count} viagens planejadas" %></p>
+<div class="container">
+  <h1>Minhas viagens</h1>
+  <p><%= "#{@trips.count} viagens planejadas" %></p>
 
-<ul class='d-flex gap-3'>
-  <% @trips.order(:updated_at).each do |trip| %>
-    <li class='card p-3 border-0 shadow rounded'>
-      <p>Nome: <%= trip.name %></p>
-      <p>Início: <%= trip.start_date %></p>
-      <p>Fim: <%= trip.end_date %></p>
-      <p>Destino: <%= trip.destination %></p>
-      <%# Verifica se o budget foi informado e, se não foi, exibe 'não informado' %>
-      <p>Budget por membro: <%= trip.budget_per_user || 'não informado' %></p>
-      <p>Criado por: <%= trip.owner.first_name %></p>
-      <p>Atualizado em: <%= trip.updated_at %></p>
-      <div class="row gy-1 gx-1 justify-content-between">
-        <%= link_to 'Ver detalhes', trip_path(trip), class: 'btn btn-primary' %>
-        <%= link_to 'Editar', edit_trip_path(trip), class: 'btn btn-primary col-6' %>
-        <%= link_to 'Deletar', trip_path(trip),
-                    class: 'btn btn-danger col-6',
-                    data: { turbo_method: :delete,
-                            turbo_confirm: "Deseja deletar #{trip.name}?"} %>
-      </div>
-    </li>
-  <% end %>
-</ul>
+  <ul class='d-flex gap-3'>
+    <% @trips.order(:updated_at).each do |trip| %>
+      <li class='card p-3 border-0 shadow rounded'>
+        <p>Nome: <%= trip.name %></p>
+        <p>Início: <%= trip.start_date %></p>
+        <p>Fim: <%= trip.end_date %></p>
+        <p>Destino: <%= trip.destination %></p>
+        <%# Verifica se o budget foi informado e, se não foi, exibe 'não informado' %>
+        <p>Budget por membro: <%= trip.budget_per_user || 'não informado' %></p>
+        <p>Criado por: <%= trip.owner.first_name %></p>
+        <p>Atualizado em: <%= trip.updated_at %></p>
+        <div class="row gy-1 gx-1 justify-content-between">
+          <%= link_to 'Ver detalhes', trip_path(trip), class: 'btn btn-primary' %>
+          <%= link_to 'Editar', edit_trip_path(trip), class: 'btn btn-primary col-6' %>
+          <%= link_to 'Deletar', trip_path(trip),
+                      class: 'btn btn-danger col-6',
+                      data: { turbo_method: :delete,
+                              turbo_confirm: "Deseja deletar #{trip.name}?"} %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 
-<%= link_to 'Criar viagem', new_trip_path, class: 'btn btn-primary' %>
+  <%= link_to 'Criar viagem', new_trip_path, class: 'btn btn-primary' %>
+</div>

@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: %i[show edit update]
+  before_action :set_trip, only: %i[show edit update destroy]
 
   def index
     # Necessário adicionar viagens criadas por OUTRAS pessoas, mas que o current_user pertença ao grupo
