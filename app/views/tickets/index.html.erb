@@ -1,46 +1,24 @@
 <div class='row'>
-<h2 class='text-center mt-5'>Meus tickets</h2>
-
-  <div class='col-md-6 col-lg-2'>
-
+<h2 class='text-center mt-5'>Passagens da minha viagem</h2>
+  <% @tickets.each do |ticket| %>
+  <div class='col-md-6 col-lg-3'>
     <div class="card border-2 shadow rounded my-3" style="max-height: 100%, width: 18rem;">
-
-        <%= image_tag 'placeholder.jpeg'%>
-
-        <div class="p-3">
-          <h5 class='card-title'>Trip 1</h5>
-          <p class='card-text' style='font-size: 12px'></p>
-          <p class='card-text'>Descrição</p>
+        <% if tickets.photo.attached? %>
+          <%= image_tag 'placeholder.jpg', height: 400, width: 300, crop: :fill, class: 'card-img-top' %>
+        <% else %>
+          <%= image_tag 'placeholder.jpg', class: 'card-img-top' %>
+        <% end %>
+        <div class="d-flex flex-column p-3">
+          <h5 class='card-title'><%= ticket.name %></h5>
+          <p class='card-text'><strong><%= number_to_currency ticket.price, unit: 'R$ ',
+                                   precision: 2,
+                                   separator: ',',
+                                   delimiter: '.' %></strong></p>
         </div>
+        <%= link_to tickets_id_path(product), class: 'btn btn-primary' do %>
+          <%= icon('fa-solid', 'magnifying-glass')%> Ver detalhes
+        <% end %>
     </div>
   </div>
-
-  <div class='col-md-6 col-lg-2'>
-
-    <div class="card border-2 shadow rounded my-3" style="max-height: 100%, width: 18rem;">
-
-        <%= image_tag 'placeholder.jpeg'%>
-
-        <div class="p-3">
-          <h5 class='card-title'>Trip 1</h5>
-          <p class='card-text' style='font-size: 12px'></p>
-          <p class='card-text'>Descrição</p>
-        </div>
-    </div>
-  </div>
-
-  <div class='col-md-6 col-lg-2'>
-
-    <div class="card border-2 shadow rounded my-3" style="max-height: 100%, width: 18rem;">
-
-        <%= image_tag 'placeholder.jpeg'%>
-
-        <div class="p-3">
-          <h5 class='card-title'>Trip 1</h5>
-          <p class='card-text' style='font-size: 12px'></p>
-          <p class='card-text'>Descrição</p>
-        </div>
-    </div>
-  </div>
-
+  <% end %>
 </div>
