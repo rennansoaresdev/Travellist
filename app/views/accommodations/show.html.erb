@@ -1,18 +1,37 @@
+<style>
+  .card {
+    width: 400px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px; /
+  }
+
+  .card-header {
+    text-align: center;
+  }
+
+  .link-container {
+    text-align: center; 
+  }
+
+</style>
+
 <div class="card">
   <div class="card-header">
-
     <h1>Detalhes da Acomodação</h1>
   </div>
   <div class ='card-body'>
     <p><strong>Nome:</strong> <%= @accommodation.name %></p>
     <p><strong>Endereço:</strong> <%= @accommodation.address %></p>
-    <p><strong>Preço:</strong> <%= number_to_currency(@accommodation.price) %></p>
+    <p><strong>Preço:</strong> R$ <%= number_to_currency(@accommodation.price, unit: "", separator: ",", delimiter: ".") %></p>
     <p><strong>Capacidade:</strong> <%= @accommodation.capacity %></p>
-    <p><strong>Tipo:</strong> <%= @accommodation.type %></p>
+    <p><strong>Tipo:</strong> <%= @accommodation.category %></p>
     <p><strong>Check-in:</strong> <%= @accommodation.checkin_time %></p>
     <p><strong>Check-out:</strong> <%= @accommodation.checkout_time %></p>
     <p><strong>URL:</strong> <a href="<%= @accommodation.url %>" target="_blank"><%= @accommodation.url %></a></p>
   </div>
-</div>
-<%= link_to "Edit Ticket", edit_accommodation_path(@accommodation), class: "btn btn-primary" %>
+<div class="link-container">
+<%= link_to "Edit Ticket", edit_accommodation_path(@accommodation), class: "btn btn-primary" %> <br><br>
 <%= link_to "Voltar para a Lista de Acomodações", trip_accommodations_path(@accommodation.trip), class: 'btn btn-primary' %>
+</div>
+</div>
