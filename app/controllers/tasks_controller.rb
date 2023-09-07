@@ -23,7 +23,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to trip_path(@trip), status: :see_other
+    redirect_to trip_path(@task.trip), status: :see_other
   end
 
   private
