@@ -45,6 +45,30 @@
     </div>
   <% end %>
 
+  <h2>Tasks</h2>
+
+  <%= simple_form_for [@trip, @task] do |f|%>
+    <%= f.input :description, as: :string, class: 'form-control' %>
+    <div class='input-group-append'>
+      <%= f.submit 'Add task', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+  <% if @trip.tasks %>
+    <ul class="list-unstyled my-3">
+      <% @trip.tasks.each do |task| %>
+        <li>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="<%= "task-#{task.id}" %>" <%= "checked" if task.done? %>>
+            <label class="form-check-label" for="<%= "task-#{task.id}" %>"><%= task.description %></label>
+            <%= link_to 'Delete', task_path(task) %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+  <% end %>
+
   <h2>Detalhes da viagem</h2>
   <p>Destino: <%= @trip.destination %></p>
   <p>Início: <%= @trip.start_date %></p>
