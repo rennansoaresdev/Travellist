@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   resources :tickets, except: %i[index new create]
   resources :accommodations, except: %i[index new create]
   resources :groups, only: :destroy
-  resources :tasks, only: :destroy
+  resources :tasks, only: %i[update destroy]
 end

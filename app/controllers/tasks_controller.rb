@@ -15,7 +15,8 @@ class TasksController < ApplicationController
   def update
     @task.update(task_params)
     if @task.save
-      redirect_to trip_path(@trip)
+      respond_to(&:js)
+      # redirect_to trip_path(@trip)
     else
       render 'trips/index', status: :unprocessable_entity
     end
