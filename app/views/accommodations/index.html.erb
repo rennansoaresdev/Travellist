@@ -1,36 +1,16 @@
 <style>
-  .custom-card {
-    width: 80%;
-    margin: 10px auto;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-  }
 
-  .custom-card .row {
-    justify-content: center;
-  }
-
-  .custom-card .card-body {
-    width: 200px;
-    height: 50px;
-  }
-
-  /* Estilos para dispositivos de tela pequena (celulares) */
   @media screen and (max-width: 767px) {
-    .custom-card {
+    .card {
       width: 100%;
     }
 
-    .custom-card h1 {
-      font-size: 24px;
-    }
-
-    .custom-card h2 {
+    .card h1 {
       font-size: 20px;
     }
 
-    .custom-card .card-body {
-      width: 100%;
+    .card p {
+      font-size: 16px;
     }
   }
 </style>
@@ -38,22 +18,30 @@
 
 <div class="container">
   <div class="custom-card">
-    <h1 class="text-center">Minhas Acomodações</h1>
-    <br>
+    <h1 class="text-center page-title" style="font-size: 36px; color: #000000;">Minhas Acomodações</h1>
 
-    <h2 class="text-center"> Viagem para: <%= link_to (@trip.name.capitalize), trip_path(@trip) %></h2><br>
+
+    <h4 class="text-center">Viagem para: <%= link_to (@trip.name.capitalize), trip_path(@trip) %> 🛫</h4>
+    <br>
     <div class="row justify-content-center">
       <% @accommodations.each do |accommodation| %>
-        <div class="col-md-4 mb">
-          <div class="card mb-4">
-            <div class="card-body">
-              <strong> <p class="text-center"><%= link_to accommodation.name, accommodation_path(accommodation) %></p></strong>
+        <div class="col-md-4 mb-3">
+          <div class="card mb-4 hoverable hover-card" style="border-radius: 15px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); background-color: #94B49F;">
+            <div class="card-body" >
+               <p><strong>Nome:</strong> <%= accommodation.name %></p>
+              <p><strong>URL:</strong> <a href="<%= accommodation.url %>" target="_blank"><%= accommodation.url %></a></p>
+              <p><strong>Endereço:</strong> <%= accommodation.address %></p>
+              <p><strong>Preço:</strong> R$ <%= number_to_currency(accommodation.price, unit: "", separator: ",", delimiter: ".") %></p>
+              <p><strong>Capacidade:</strong> <%= accommodation.capacity %></p>
+              <p><strong>Tipo:</strong> <%= accommodation.category %></p>
+              <p><strong>Check-in:</strong> <%= accommodation.checkin_time.strftime('%d/%m/%Y %H:%M') %></p>
+              <p><strong>Check-out:</strong> <%= accommodation.checkout_time.strftime('%d/%m/%Y %H:%M') %></p>
+              <%= link_to "Ver detalhes", accommodation_path(accommodation)%>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-
-    <%= link_to "Nova Acomodação", new_trip_accommodation_path, class: 'btn btn-primary' %>
+     <%= link_to "Nova Acomodação", new_trip_accommodation_path, class: 'btn btn-primary' %>
   </div>
 </div>
