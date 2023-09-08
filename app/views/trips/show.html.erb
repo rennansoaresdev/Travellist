@@ -1,8 +1,12 @@
 <div class="container">
-  <h1><%= @trip.name %></h1>
+  <h1 class="my-3"><%= @trip.name %></h1>
 
-  <p>Esse é o #show da viagem. Mega dashboard!</p>
+  <h2>Detalhes da viagem</h2>
+  <p>Destino: <%= @trip.destination %></p>
+  <p>Início: <%= @trip.start_date %></p>
+  <p>Fim: <%= @trip.end_date %></p>
 
+  <%# Passagens %>
   <h2><%= link_to 'Passagens', trip_tickets_path(@trip), class: 'text-decoration-none' %></h2>
 
   <% if @trip.tickets.present? %>
@@ -25,6 +29,7 @@
     </div>
   <% end %>
 
+  <%# Acomodações %>
   <h2><%= link_to 'Acomodações', trip_accommodations_path(@trip), class: 'text-decoration-none' %></h2>
 
   <% if @trip.accommodations.present? %>
@@ -45,8 +50,45 @@
     </div>
   <% end %>
 
-  <h2>Detalhes da viagem</h2>
-  <p>Destino: <%= @trip.destination %></p>
-  <p>Início: <%= @trip.start_date %></p>
-  <p>Fim: <%= @trip.end_date %></p>
+  <%# Tasks %>
+  <div class='my-3'>
+    <h2>Tasks</h2>
+
+    <%= simple_form_for [@trip, @task] do |f|%>
+      <%= f.input :description, as: :string, class: 'form-control' %>
+      <div class='input-group-append'>
+        <%= f.submit 'Add task', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+
+    <% if @trip.tasks %>
+      <ul class="list-unstyled my-3">
+        <% @trip.tasks.order(:done, :description).each do |task| %>
+          <li>
+            <div class="form-check" data-controller='task'>
+              <input class="form-check-input" type="checkbox" name="done" id="<%= "task-#{task.id}" %>"
+                    <%= "checked" if task.done? %>
+                    data-action="click->task#toggleDone"
+                    data-task-target="checkbox"
+                    data-id="<%= task.id %>">
+              <label data-task-target="label"
+                     class="form-check-label"
+                     for="<%= "task-#{task.id}" %>">
+                     <% if task.done? %>
+                      <s><%= task.description %></s>
+                     <% else %>
+                      <%= task.description %>
+                     <% end %>
+              </label>
+              <%= link_to task_path(task), data: { turbo_method: :delete } do %>
+                <i class="fa-solid fa-trash-can"></i>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+    <% end %>
+  </div>
+
 </div>
