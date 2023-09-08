@@ -14,6 +14,7 @@ class AccommodationsController < ApplicationController
   end
 
   def create
+    @trip = Trip.find(params[:trip_id])
     @accommodation = Accommodation.new(accommodation_params)
     @accommodation.user = current_user
     @accommodation.trip_id = params[:trip_id]
@@ -41,6 +42,6 @@ class AccommodationsController < ApplicationController
   private
 
   def accommodation_params
-    params.require(:accommodation).permit(:url, :checkin_time, :checkout_time, :price, :capacity, :type, :name, :address)
+    params.require(:accommodation).permit(:url, :checkin_time, :checkout_time, :price, :capacity, :category, :name, :address)
   end
 end
