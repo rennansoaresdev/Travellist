@@ -1,10 +1,59 @@
-<h1>Minhas Acomodações</h1>
-<br>
+<style>
+  .custom-card {
+    width: 80%;
+    margin: 10px auto;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
 
-<h2>Acomodações para a Viagem: <%= link_to (@trip.name), accommodation_path(@accommodations)%></h2><br>
+  .custom-card .row {
+    justify-content: center;
+  }
+
+  .custom-card .card-body {
+    width: 200px;
+    height: 50px;
+  }
+
+  /* Estilos para dispositivos de tela pequena (celulares) */
+  @media screen and (max-width: 767px) {
+    .custom-card {
+      width: 100%;
+    }
+
+    .custom-card h1 {
+      font-size: 24px;
+    }
+
+    .custom-card h2 {
+      font-size: 20px;
+    }
+
+    .custom-card .card-body {
+      width: 100%;
+    }
+  }
+</style>
 
 
-<%= link_to "Nova Acomodação", new_trip_accommodation_path, class: 'btn btn-primary' %>
+<div class="container">
+  <div class="custom-card">
+    <h1 class="text-center">Minhas Acomodações</h1>
+    <br>
 
+    <h2 class="text-center"> Viagem para: <%= link_to (@trip.name.capitalize), trip_path(@trip) %></h2><br>
+    <div class="row justify-content-center">
+      <% @accommodations.each do |accommodation| %>
+        <div class="col-md-4 mb">
+          <div class="card mb-4">
+            <div class="card-body">
+              <strong> <p class="text-center"><%= link_to accommodation.name, accommodation_path(accommodation) %></p></strong>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-<%= link_to "Voltar para a Viagem", @trip, class: 'btn btn-primary' %>
+    <%= link_to "Nova Acomodação", new_trip_accommodation_path, class: 'btn btn-primary' %>
+  </div>
+</div>
