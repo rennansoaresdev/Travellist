@@ -1,25 +1,5 @@
 <style>
-  .card {
-    width: 30%;
-    margin: 0 auto;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-  }
-
-  .card .card-header {
-    background-color: #f5f5f5;
-    padding: 10px;
-    text-align: center;
-  }
-
-  .card h1 {
-    font-size: 24px;
-  }
-
-  .card p {
-    margin: 10px 0;
-  }
-
+  
 
   @media screen and (max-width: 767px) {
     .card {
@@ -37,22 +17,26 @@
 </style>
 
 
-<div class="card">
-  <div class="card-header">
-    <h1>Detalhes da Acomodação</h1>
+<div class="card hoverable hover-card mt-4" style="width: 30%; border-radius: 15px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); background-color: #94B49F; padding: 30px; margin-bottom: 10px; margin: auto;">
+   <div class="card-header text-center p-4" style="border-radius: 15px; background-color: #FAF0D7">
+    <h4 class="display-7">Detalhes da Acomodação</h4>
   </div>
-  <div class ='card-body'>
-    <p><strong>Nome:</strong> <%= @accommodation.name %></p>
-    <p><strong>Endereço:</strong> <%= @accommodation.address %></p>
-    <p><strong>Preço:</strong> R$ <%= number_to_currency(@accommodation.price, unit: "", separator: ",", delimiter: ".") %></p>
-    <p><strong>Capacidade:</strong> <%= @accommodation.capacity %></p>
-    <p><strong>Tipo:</strong> <%= @accommodation.category %></p>
-    <p><strong>Check-in:</strong> <%= @accommodation.checkin_time %></p>
-    <p><strong>Check-out:</strong> <%= @accommodation.checkout_time %></p>
-    <p><strong>URL:</strong> <a href="<%= @accommodation.url %>" target="_blank"><%= @accommodation.url %></a></p>
+  <div class="container mt-4" style="border-radius: 15px; background-color: #FAF0D7;">
+
+
+    <div class ="card-body my-2">
+      <p><strong>Nome:</strong> <%= @accommodation.name %></p>
+      <p><strong>Endereço:</strong> <%= @accommodation.address %></p>
+      <p><strong>Preço:</strong> R$ <%= number_to_currency(@accommodation.price, unit: "", separator: ",", delimiter: ".") %></p>
+      <p><strong>Capacidade:</strong> <%= @accommodation.capacity %></p>
+      <p><strong>Tipo:</strong> <%= @accommodation.category %></p>
+      <p><strong>Check-in:</strong> <%= @accommodation.checkin_time.strftime('%d/%m/%Y %H:%M:%S')%></p>
+      <p><strong>Check-out:</strong> <%= @accommodation.checkout_time.strftime('%d/%m/%Y %H:%M:%S')%></p>
+      <p><strong>URL:</strong> <a href="<%= @accommodation.url %>" target="_blank"><%= @accommodation.url %></a></p>
+  </div>
   </div>
 <div class="link-container">
-<%= link_to "Editar acomodação", edit_accommodation_path(@accommodation), class: "btn btn-primary" %> <br><br>
+<br><%= link_to "Editar acomodação", edit_accommodation_path(@accommodation), class: "btn btn-primary" %> <br><br>
 <%= link_to "Voltar para a Lista de Acomodações", trip_accommodations_path(@accommodation.trip), class: 'btn btn-primary' %>
 </div>
 </div>
