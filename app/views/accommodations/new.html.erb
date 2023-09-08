@@ -1,23 +1,35 @@
-<div class="card">
-  <div class="card-header">
-    <h1>Nova acomodação</h1>
-  </div><br>
-  <div class="card-body">
-    <%= simple_form_for [@trip, @accommodation] do |form| %>
-      <%= form.error_notification %>
+<style>
+  .custom-card {
+    width: 50%;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+  }
+</style>
 
-      <%= form.input :url %>
-      <%= form.input :checkin_time %>
-      <%= form.input :checkout_time %>
-      <%= form.input :type %>
-      <%= form.input :capacity %>
-      <%= form.input :price %>
-      <%= form.input :name %>
-      <%= form.input :address %>
 
-      <div class="actions"><br>
-        <%= form.button :submit, "Criar acomodação", class: "btn btn-primary" %>
+<div class="container">
+  <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card custom-card">
+      <div class="card-header">
+        <h1 class="text-center">Nova Acomodação</h1>
       </div>
-    <% end %>
+      <div class="card-body p-3">
+        <%= simple_form_for [@trip, @accommodation], html: { class: 'form' } do |form| %>
+          <%= form.error_notification %>
+
+          <%= form.input :name, label: 'Nome' %>
+          <%= form.input :address, label: 'Endereço' %>
+          <%= form.input :price, label: 'Preço' %>
+          <%= form.input :capacity, label: 'Capacidade' %>
+          <%= form.input :category, label: 'Tipo' %>
+          <%= form.input :checkin_time, label: 'Check-in' %>
+          <%= form.input :checkout_time, label: 'Check-out' %>
+          <%= form.input :url, label: 'URL' %>
+
+          <%= form.button :submit, "Criar Acomodação", class: "btn btn-primary btn-block" %>
+          <%= link_to "Voltar para Acomodações", trip_accommodations_path, class: "btn btn-secondary btn-block mt-2" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
