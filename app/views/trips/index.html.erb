@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container-sm">
   <h1>Minhas viagens</h1>
   <p><%= "#{@trips.count} viagens planejadas" %></p>
-
+ <div class="row m-1">
   <ul class='d-flex gap-3'>
     <% @trips.order(:updated_at).each do |trip| %>
       <li class='card p-3 border-0 shadow rounded'>
@@ -24,6 +24,6 @@
       </li>
     <% end %>
   </ul>
-
   <%= link_to 'Criar viagem', new_trip_path, class: 'btn btn-primary' %>
+</div>
 </div>
