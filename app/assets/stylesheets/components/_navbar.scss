@@ -5,10 +5,15 @@
   border: none;
 }
 .navbar-toggler {
-  margin-left: auto;
+  // margin-left: auto;
   border: none;
 }
 .navbar-brand {
-  flex: 1;
+  margin-right: 0;
+
   text-align: center;
+}
+.navbar-container {
+  width: 100%;
+  margin-left: 35%;
 }
