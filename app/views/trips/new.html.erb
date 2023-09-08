@@ -1,21 +1,25 @@
-<div class="container w-25 mt-3">
-  <div class="card p-4 border-0 rounded-5 shadow">
-    <h1 class="text-center my-3">Vamos viajar?</h1>
-
-    <%= simple_form_for @trip do |f| %>
-      <%= f.input :name,
-                  label: 'Dê um nome para sua viagem:' %>
-      <%= f.input :destination,
-                  label: 'Para onde você vai?' %>
-      <%= f.input :start_date,
-                  label: 'Data de ida:',
-                  start_year: Date.today.year %>
-      <%= f.input :end_date,
-                  label: 'Data de volta:',
-                  start_year: Date.today.year %>
-      <div class="row">
-        <%= f.submit class: 'btn btn-primary rounded-5' %>
+<div class="container justify-content-center mt-5">
+  <div class="row justify-content-center align-items-center">
+      <div class="col-10 col-md-6 col-lg-4">
+        <div class="card p-4 border-0 rounded-5 shadow">
+          <h1 class="text-center my-3">Vamos viajar?</h1>
+          <%= simple_form_for @trip do |f| %>
+            <%= f.input :name,
+                        label: 'Dê um nome para sua viagem:' %>
+            <%= f.input :destination,
+                        label: 'Para onde você vai?' %>
+            <%= f.input :start_date,
+                        label: 'Data de ida:',
+                        start_year: Date.today.year %>
+            <%= f.input :end_date,
+                        label: 'Data de volta:',
+                        start_year: Date.today.year %>
+            <div class="row">
+              <%= f.submit class: 'btn btn-primary rounded-5' %>
+            </div>
+          <% end %>
+        </div>
       </div>
-    <% end %>
+  </div>
   </div>
 </div>
