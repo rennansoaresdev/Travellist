@@ -1,10 +1,38 @@
 <style>
   .custom-card {
     width: 50%;
-    margin: 0 auto; 
+    margin: 0 auto;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   }
+
+  .card-header h1 {
+    font-size: 24px;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+
+  @media screen and (max-width: 767px) {
+    .custom-card {
+      width: 90%;
+    }
+
+    .card-header h1 {
+      font-size: 20px;
+    }
+
+    .card-body {
+      padding: 10px;
+    }
+
+    .form-control {
+      font-size: 16px;
+    }
+  }
 </style>
+
 
 
 <div class="container">
@@ -25,7 +53,7 @@
         <%= form.input :name%>
         <%= form.input :address %>
         <div class="actions">
-          <%= form.button :submit, "Update Accommodation", class: "btn btn-primary" %>
+          <%= form.button :submit, "Concluir", class: "btn btn-primary" %>
           <%= link_to "voltar para detalhes", @accommodation, class: "btn btn-primary" %>
         </div>
       <% end %>
