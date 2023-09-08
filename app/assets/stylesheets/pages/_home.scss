@@ -1,5 +1,12 @@
-.banner-container {
+.banner {
+  width: 100%;
+  height: 330px;
+  background-image: image-url('banner_welcome.png');
+  background-size: cover;
+  background-position: center;
   display: flex;
+  align-items: flex-end;
   justify-content: center;
-  margin-top: 100px;
+  padding-bottom: 80px;
+  margin-top: 70px;
 }
