@@ -1,5 +1,10 @@
 <div class="container">
-  <h1><%= @trip.name %></h1>
+  <h1 class="my-3"><%= @trip.name %></h1>
+
+  <h2>Detalhes da viagem</h2>
+  <p>Destino: <%= @trip.destination %></p>
+  <p>Início: <%= @trip.start_date %></p>
+  <p>Fim: <%= @trip.end_date %></p>
 
   <%# Passagens %>
   <h2><%= link_to 'Passagens', trip_tickets_path(@trip), class: 'text-decoration-none' %></h2>
@@ -86,8 +91,4 @@
     <% end %>
   </div>
 
-  <h2>Detalhes da viagem</h2>
-  <p>Destino: <%= @trip.destination %></p>
-  <p>Início: <%= @trip.start_date %></p>
-  <p>Fim: <%= @trip.end_date %></p>
 </div>
