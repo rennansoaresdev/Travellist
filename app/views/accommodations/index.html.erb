@@ -14,34 +14,55 @@
     }
   }
 </style>
-
-
 <div class="container">
   <div class="custom-card">
     <h1 class="text-center page-title" style="font-size: 36px; color: #000000;">Minhas Acomodações</h1>
-
-
     <h4 class="text-center">Viagem para: <%= link_to (@trip.name.capitalize), trip_path(@trip) %> 🛫</h4>
     <br>
-    <div class="row justify-content-center">
+    <div class="row">
       <% @accommodations.each do |accommodation| %>
-        <div class="col-md-4 mb-3">
-          <div class="card mb-4 hoverable hover-card" style="border-radius: 15px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); background-color: #94B49F;">
-            <div class="card-body" >
-               <p><strong>Nome:</strong> <%= accommodation.name %></p>
-              <p><strong>URL:</strong> <a href="<%= accommodation.url %>" target="_blank"><%= accommodation.url %></a></p>
-              <p><strong>Endereço:</strong> <%= accommodation.address %></p>
-              <p><strong>Preço:</strong> R$ <%= number_to_currency(accommodation.price, unit: "", separator: ",", delimiter: ".") %></p>
-              <p><strong>Capacidade:</strong> <%= accommodation.capacity %></p>
-              <p><strong>Tipo:</strong> <%= accommodation.category %></p>
-              <p><strong>Check-in:</strong> <%= accommodation.checkin_time.strftime('%d/%m/%Y %H:%M') %></p>
-              <p><strong>Check-out:</strong> <%= accommodation.checkout_time.strftime('%d/%m/%Y %H:%M') %></p>
-              <%= link_to "Ver detalhes", accommodation_path(accommodation)%>
+        <div class="col-md-12 mb-8">
+          <div class="card w-75 mb-5 hoverable hover-card" style="border-radius: 15px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); background-color: #94B49F;">
+            <div class="card-body pl-6" style="border-radius: 0 0 15px 15px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); background-color: #ffffff;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <p class="card-text accommodation-name"><strong>Nome: </strong><%= accommodation.name %></p>
+                <div class="details-toggle">
+                  <p class="toggle-trigger" style="margin-right: 20px;"><strong> <%= "-" %>   Detalhes ▼</strong></p>
+                  <div class="toggle-content">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p><strong>URL:</strong> <a href="<%= accommodation.url %>" target="_blank"><%= accommodation.url %></a></p>
+                          <p><strong>Endereço:</strong> <%= accommodation.address %></p>
+                          <p><strong>Preço:</strong> R$ <%= number_to_currency(accommodation.price, unit: "", separator: ",", delimiter: ".") %></p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>Capacidade:</strong> <%= accommodation.capacity %></p>
+                          <p><strong>Tipo:</strong> <%= accommodation.category %></p>
+                          <p><strong>Check-in:</strong> <%= accommodation.checkin_time.strftime('%d/%m/%Y %H:%M') %></p>
+                          <p><strong>Check-out:</strong> <%= accommodation.checkout_time.strftime('%d/%m/%Y %H:%M') %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-     <%= link_to "Nova Acomodação", new_trip_accommodation_path, class: 'btn btn-primary' %>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $(".toggle-content").hide();
+  $(".toggle-trigger").click(function() {
+    $(this).next(".toggle-content").slideToggle();
+  });
+});
+</script>
+
+<%= link_to "Nova Acomodação", new_trip_accommodation_path, class: 'btn btn-primary' %>

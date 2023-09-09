@@ -1,5 +1,5 @@
 <style>
-  
+
 
   @media screen and (max-width: 767px) {
     .card {
@@ -17,7 +17,7 @@
 </style>
 
 
-<div class="card hoverable hover-card mt-4" style="width: 30%; border-radius: 15px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); background-color: #94B49F; padding: 30px; margin-bottom: 10px; margin: auto;">
+<div class="card mt-4" style="width: 30%; border-radius: 15px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); background-color: #94B49F; padding: 30px; margin-bottom: 10px; margin: auto;">
    <div class="card-header text-center p-4" style="border-radius: 15px; background-color: #FAF0D7">
     <h4 class="display-7">Detalhes da Acomodação</h4>
   </div>
@@ -35,8 +35,8 @@
       <p><strong>URL:</strong> <a href="<%= @accommodation.url %>" target="_blank"><%= @accommodation.url %></a></p>
   </div>
   </div>
-<div class="link-container">
-<br><%= link_to "Editar acomodação", edit_accommodation_path(@accommodation), class: "btn btn-primary" %> <br><br>
+<br>
+<%= link_to "Editar acomodação", edit_accommodation_path(@accommodation), class: "btn btn-primary" %>
 <%= link_to "Voltar para a Lista de Acomodações", trip_accommodations_path(@accommodation.trip), class: 'btn btn-primary' %>
 </div>
 </div>
