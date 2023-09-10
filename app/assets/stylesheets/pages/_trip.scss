@@ -1,0 +1,67 @@
+.trip-session {
+  border: 0px;
+  box-shadow: 4px 4px 8px 0px rgba($color: #9d9d9d, $alpha: 0.8);
+  border-radius: 5px;
+  padding: 16px 8px;
+  background-color: #94B49F;
+  h2 {
+    text-align: start;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    color: black;
+    font-size: 32;
+    font-weight: bold;
+    a {
+      color: black;
+      font-size: 32;
+      font-weight: bold;
+    }
+  }
+  // Usar para botões dentro do card
+
+  /* .trip-card-button {
+       text-decoration: none;
+       color: white;
+       font-style: bold;
+       display: inline-block;
+       padding: 8px 12px;
+       background-color: #DF7861;
+       border-radius: 12px;
+  }*/
+}
+
+.trip-tickets-card-group {
+  list-style: none;
+}
+
+.trip-ticket-card {
+  border-bottom: 2px dotted #0000005f;
+  padding: 8px 0px;
+  font-size: 12px;
+}
+
+.ticket-card-location {
+  display: flex;
+  gap: 8px;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center;
+  i {
+    font-size: 20px;
+    color: rgb(135, 135, 135);
+  }
+}
+
+.ticket-card-location-info {
+}
+
+.ticket-card-location-name {
+  text-transform: uppercase;
+  margin: 0;
+  color: rgb(97, 97, 97);
+}
+
+.ticket-card-location-time {
+  font-size: 16px;
+  font-weight: bold;
+}
