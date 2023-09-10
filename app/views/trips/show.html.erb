@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-5">
       <%# Tickets %>
       <div class="trip-session">
         <h2><%= link_to 'Passagens', trip_tickets_path(@trip), class: 'text-decoration-none' %></h2>
@@ -22,6 +22,7 @@
               <li class="trip-ticket-card">
                 <div class="ticket-card-location">
                   <div class="ticket-card-location-info">
+                    <!-- Funciona melhor com a sigla do aeroporto -->
                     <p class="ticket-card-location-name"><%= ticket.origin.first(3) %></p>
                     <p class="ticket-card-location-time"><%= ticket.start_time.strftime("%H:%M") %></p>
                   </div>
@@ -34,7 +35,30 @@
                     <p class="ticket-card-location-time"><%= ticket.end_time.strftime("%H:%M") %></p>
                   </div>
                 </div>
-                <h4><%= number_to_currency ticket.price, unit: 'R$ ', precision: 2, separator: ',', delimiter: '.' %></p>
+                <div class="ticket-card-details">
+                  <div class="ticket-card-details-item">
+                    <p><strong>Assento:</strong></p>
+                    <p><%= ticket.seat || 'Não selecionado' %></p>
+                  </div>
+                  <div class="ticket-card-details-item">
+                    <p><strong>Portão:</strong></p>
+                    <p><%= ticket.gate || 'Não informado' %></p>
+                  </div>
+                </div>
+                <!-- Essa div precisa ser editada pra ficar melhor no card -->
+                <div class="ticket-card-user-info">
+                  <p>Acidionado por:</p>
+                  <%= image_tag 'user-placeholder.png', alt: current_user.first_name, class: 'avatar' %>
+                </div>
+                <div class="ticket-card-options">
+                  <%= link_to edit_ticket_path(ticket), class: 'trip-card-button' do %>
+                    <i class="fa-solid fa-pen-to-square"></i> Editar
+                  <% end %>
+                  <%= link_to ticket_path(ticket), class: 'trip-card-button', data: { turbo_method: :delete, turbo_confirm: 'Deseja deletar a passagem?' } do %>
+                    <i class="fa-solid fa-trash-can"></i>
+                  <% end %>
+                </div>
+                <h4 class="ticket-card-price"><%= number_to_currency ticket.price, unit: 'R$ ', precision: 2, separator: ',', delimiter: '.' %></p>
               </li>
             <% end %>
           </ul>
@@ -47,7 +71,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-5">
       <%# Accommodations %>
       <div class="trip-session">
         <h2><%= link_to 'Acomodações', trip_accommodations_path(@trip), class: 'text-decoration-none' %></h2>
@@ -72,7 +96,7 @@
     </div>
 
     <%# Tasks %>
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-5">
       <div class="trip-session">
         <h2>Tarefas</h2>
         <% if @trip.tasks.present? %>

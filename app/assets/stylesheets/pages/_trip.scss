@@ -7,7 +7,7 @@
   h2 {
     text-align: start;
     margin-top: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     color: black;
     font-size: 32;
     font-weight: bold;
@@ -17,17 +17,20 @@
       font-weight: bold;
     }
   }
-  // Usar para botões dentro do card
+  .avatar {
+    width: 24px;
+    height: 24px;
+  }
 
-  /* .trip-card-button {
-       text-decoration: none;
-       color: white;
-       font-style: bold;
-       display: inline-block;
-       padding: 8px 12px;
-       background-color: #DF7861;
-       border-radius: 12px;
-  }*/
+  .trip-card-button {
+    text-decoration: none;
+    color: white;
+    font-style: bold;
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #DF7861;
+    border-radius: 12px;
+  }
 }
 
 .trip-tickets-card-group {
@@ -36,14 +39,15 @@
 
 .trip-ticket-card {
   border-bottom: 2px dotted #0000005f;
-  padding: 8px 0px;
+  padding: 12px 0px;
   font-size: 12px;
+  position: relative;
 }
 
 .ticket-card-location {
   display: flex;
   gap: 8px;
-  width: 40%;
+  width: 50%;
   justify-content: space-between;
   align-items: center;
   i {
@@ -53,6 +57,7 @@
 }
 
 .ticket-card-location-info {
+  margin-top: 4px;
 }
 
 .ticket-card-location-name {
@@ -64,4 +69,40 @@
 .ticket-card-location-time {
   font-size: 16px;
   font-weight: bold;
+}
+
+.ticket-card-details {
+  width: 50%
+}
+.ticket-card-details-item {
+  display: flex;
+  justify-content: space-between
+}
+.ticket-card-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #dd4725;
+  position: absolute;
+  top: 70%;
+  left: 70%;
+}
+.ticket-card-user-info {
+  position: absolute;
+  top: 40%;
+  left: 60%;
+  display: flex;
+  gap: 4px;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+  img {
+    padding: 0;
+    margin: 0;
+  }
+}
+.ticket-card-options {
+  position: absolute;
+  top: 5%;
+  left: 65%;
 }
