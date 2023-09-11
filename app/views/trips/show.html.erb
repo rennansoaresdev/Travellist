@@ -1,6 +1,9 @@
 <%# Trip banner %>
-<div class="trip-banner" style="background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), <%= @trip.photo.present? ? "url('#{cl_image_path @trip.photo.key}')" : "asset-url('trip-banner-placeholder.jpg')" %>;">
+<div class="trip-banner" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), <%= @trip.photo.present? ? "url('#{cl_image_path @trip.photo.key}')" : "asset-url('trip-banner-placeholder.jpg')" %>;">
 <%# <div class="trip-banner"> %>
+<%= link_to trips_path do %>
+  <i class="fa-solid fa-arrow-left btn-back"></i>
+<% end %>
 <h1 class="my-3"><%= @trip.name %></h1>
   <div class="row my-5 gy-3 justify-content-between">
     <div class="col-6">
@@ -24,7 +27,11 @@
     <div class="col-6">
       <div class="trip-banner-info">
         <i class="fa-solid fa-hand-holding-dollar"></i>
-        <p>X reais/membro</p>
+        <% if @trip.budget_per_user.present? %>
+          <p><%= number_to_currency @trip.budget_per_user, unit: 'R$ ', precision: 2, separator: ',', delimiter: '.' %></p>
+        <% else %>
+          <p>Não informado</p>
+        <% end %>
       </div>
     </div>
   </div>
@@ -86,7 +93,9 @@
         <% else %>
           <div class="trip-section-empty">
             <p>Não há passagens adicionadas à sua viagem.</p>
-            <%= link_to 'Nova passagem', new_trip_ticket_path(@trip), class: 'btn btn-primary rounded-5 shadow'  %>
+            <%= link_to new_trip_ticket_path(@trip), class: 'trip-section-btn-add' do %>
+              <i class="fa-solid fa-plus"></i>
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -110,7 +119,9 @@
         <% else %>
           <div class="trip-section-empty">
             <p>Não há acomodações adicionadas à sua viagem.</p>
-            <%= link_to 'Nova acomodação', new_trip_accommodation_path(@trip), class: 'btn btn-primary rounded-5 shadow'  %>
+            <%= link_to new_trip_accommodation_path(@trip), class: 'trip-section-btn-add' do %>
+              <i class="fa-solid fa-plus"></i>
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -147,14 +158,17 @@
             <% end %>
           </ul>
         <% else %>
-          <p>Você ainda não adicionou tarefas para esta viagem, <%= current_user.first_name %>.</p>
+        <div class="trip-section-empty">
+          <p>Você não tem tarefas para esta viagem, <%= current_user.first_name %>.</p>
+        </div>
         <% end %>
         <%= simple_form_for [@trip, @task] do |f|%>
           <%= f.input :description, as: :string,
                       label: 'Descrição da tarefa:',
                       class: 'form-control' %>
           <div class='input-group-append'>
-            <%= f.submit 'Criar', class: 'btn btn-primary rounded-5 shadow' %>
+            <%= f.submit 'Criar', class: 'btn btn-primary rounded-5 shadow' do %>
+            <% end %>
           </div>
         <% end %>
       </div>
