@@ -1,11 +1,9 @@
-
-
 <div class="card">
   <div class="card-header">
-    <h1>Create a New Ticket</h1>
-  </div><br>
+    <h1>Nova passagem</h1>
+  </div>
   <div class="card-body">
-    <%= simple_form_for [@trip, @ticket ] do |form| %>
+    <%= simple_form_for [@trip, @ticket] do |form| %>
       <%= form.error_notification %>
 
       <%= form.input :url %>
@@ -18,8 +16,8 @@
       <%= form.input :price %>
       <%= form.input :company_name %>
 
-      <div class="actions"><br>
-        <%= form.button :submit, "Create Ticket", class: "btn btn-primary" %>
+      <div class="actions">
+        <%= form.button :submit, "Adicionar", class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>

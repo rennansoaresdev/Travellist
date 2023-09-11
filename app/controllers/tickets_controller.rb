@@ -1,13 +1,14 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[show edit update destroy]
+  before_action :set_trip, only: %i[index new create]
+
   # Listagem de passagens: Se usuário estiver logado
   def index
-    @tickets = Ticket.where(trip_id: params[:trip_id])
+    @tickets = Ticket.where(trip: @trip)
   end
 
   def new
     @ticket = Ticket.new
-    @trip = Trip.find(params[:trip_id])
   end
 
   def show
@@ -15,12 +16,14 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
+    @ticket.trip = @trip
     @ticket.user = current_user
-    @ticket.trip_id = params[:trip_id]
+
     if @ticket.save
-      redirect_to ticket_path(@ticket), notice: 'Ticket was successfully created.'
+      redirect_to ticket_path(@ticket), notice: 'Passagem adicionada!'
     else
-      render :new
+      raise
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -29,9 +32,9 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update(ticket_params)
-      redirect_to @ticket, notice: 'Ticket was successfully updated.'
+      redirect_to ticket_path(@ticket), notice: 'Passagem atualizada'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -48,5 +51,9 @@ class TicketsController < ApplicationController
 
   def set_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def set_trip
+    @trip = Trip.find(params[:trip_id])
   end
 end
