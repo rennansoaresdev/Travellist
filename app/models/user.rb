@@ -9,6 +9,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :photo
+
   has_many :groups
   has_many :trips, through: :groups
   has_many :accommodations

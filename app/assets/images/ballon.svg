@@ -1,10 +1,4 @@
-<div class="navbar">
-<%= link_to root_path, class: "navbar-brand" do %>
-       <%= image_tag "logo_travellist.png"%>
-      <% end %>
-</div>
-<%# ===== Balão flutuante %>
-<svg class="ballon" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 171 242" width="171" height="242">
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 171 242" width="171" height="242">
 	<title>New Project</title>
 	<defs>
 		<image  width="171" height="242" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKsAAADyAQMAAAAIp6dlAAAAAXNSR0IB2cksfwAAAANQTFRFAAAAp3o92gAAAAF0Uk5TAEDm2GYAAAAcSURBVHic7cExAQAAAMKg9U9tDQ+gAAAAAAD4MxW+AAECogL/AAAAAElFTkSuQmCC"/>
@@ -15,77 +9,3 @@
 	<use id="Background" href="#img1" x="0" y="0"/>
 	<use id="Layer 1" href="#img2" x="0" y="0"/>
 </svg>
-
-<%# ===== Banner com botão ===== %>
-<div class="container-sm">
-  <div class="banner">
-    <button class="button-lg">
-      <%= link_to "Comece por aqui!", new_user_session_path%>
-    </button>
-  </div>
-
-<%# ===== Texto de apresentação ===== %>
-  <div class="text-decoration">
-    <p>
-      <h4>Tudo o que você precisa para viajar tranquilo!</h4>
-
-      O Travellist é a solução definitiva para o planejamento de viagens sem complicações.
-
-      Oferecemos uma plataforma completa para te ajudar na organização de suas viagens.
-
-      Encontre passagens, gerencie datas e horarios, organize sua mala e compartilhe com seus amigos.
-
-      Recomendações personalizadas para que você possa explorar o mundo com confiança e tranquilidade.
-
-      O Travellist é seu parceiro de viagem confiável, proporcionando uma experiência que permite desfrutar ao máximo de cada jornada. Viajar nunca foi tão fácil!
-    </p>
-  </div>
-
-<%# ===== Menu inferior estilo "mobile" ===== %>
-  <nav class="mobile-nav">
-
-      <% if current_user && current_user.photo.present? %>
-        <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <div class="avatar">
-            <%= cl_image_tag current_user.photo.key, width: 30, height: 30 %>
-          </div>
-        <% end %>
-        <% elsif current_user.nil? %>
-          <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-            <div class="avatar">
-              <i class="far fa-user-circle"></i>
-            </div>
-          <% end %>
-        <% else %>
-        <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <div class="avatar">
-            <%= image_tag 'user-placeholder.png', width: 30, height: 30 %>
-          </div>
-        <% end %>
-      <% end %>
-
-      <% if current_user %>
-        <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <i class="fas fa-align-center"></i>
-        <% end %>
-      <% else %>
-        <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <i class="fas fa-align-center"></i>
-        <% end %>
-      <% end %>
-
-      <% if current_user %>
-        <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <i class="far fa-comment-dots"></i>
-        <% end %>
-      <% else %>
-        <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <i class="far fa-comment-dots"></i>
-        <% end %>
-      <% end %>
-
-      <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "bloc-icon", style: 'text-decoration: none;' do %>
-       <i class="fa-solid fa-arrow-right-from-bracket"></i>
-      <% end %>
-
-  </nav>
