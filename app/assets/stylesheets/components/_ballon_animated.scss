@@ -1,0 +1,18 @@
+.ballon {
+  width: 130px;
+  height: 130px;
+  position: absolute;
+  top: 10px;
+  left: 65%;
+  animation: go-back 3s infinite alternate;
+  z-index: 999;
+}
+
+@keyframes go-back {
+  from {
+    transform: translateY(10px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
