@@ -22,7 +22,6 @@ class TicketsController < ApplicationController
     if @ticket.save
       redirect_to ticket_path(@ticket), notice: 'Passagem adicionada!'
     else
-      raise
       render :new, status: :unprocessable_entity
     end
   end
