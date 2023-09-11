@@ -1,16 +1,22 @@
 .button-lg {
-
   padding: 12px 24px;
-
   border-radius: 8px;
-  border: 2px solid var(--ROSE, #DF7861);
+  border: none;
   background: var(--ROSE, #DF7861);
   box-shadow: -4px 4px 2px 0px #ECB390;
-
   color: var(--ICE, #FCF8E8);
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  line-height: 24px; /* 150% */
+  line-height: 24px;
+}
+button:active {
+  background-color: #ECB390;
+}
+.button-lg a {
+  text-decoration: none;
+  color: #FCF8E8;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
 }

@@ -1,20 +1,69 @@
+<div class="navbar">
+<%= link_to root_path, class: "navbar-brand" do %>
+       <%= image_tag "logo_travellist.png"%>
+      <% end %>
+</div>
+
+<%# ===== Banner com botão ===== %>
 <div class="container-sm">
   <div class="banner">
-    <button class="button-lg">comece por aqui</button>
+    <button class="button-lg">
+      <%= link_to "Comece por aqui!", new_user_session_path%>
+    </button>
   </div>
 
- <div>
- <p>
-  Tudo o que você precisa para viajar tranquilo!
+<%# ===== Texto de apresentação %>
+  <div class="text-decoration">
+    <p>
+      <h4>Tudo o que você precisa para viajar tranquilo!</h4>
 
-O Travellist é a solução definitiva para o planejamento de viagens sem complicações.
+      O Travellist é a solução definitiva para o planejamento de viagens sem complicações.
 
-Oferecemos uma plataforma completa para te ajudar na organização de suas viagens.
+      Oferecemos uma plataforma completa para te ajudar na organização de suas viagens.
 
-Encontre passagens, gerencie datas e horarios, organize sua mala e compartilhe com seus amigos.
+      Encontre passagens, gerencie datas e horarios, organize sua mala e compartilhe com seus amigos.
 
-Recomendações personalizadas para que você possa explorar o mundo com confiança e tranquilidade.
+      Recomendações personalizadas para que você possa explorar o mundo com confiança e tranquilidade.
 
-O Travellist é seu parceiro de viagem confiável, proporcionando uma experiência que permite desfrutar ao máximo de cada jornada. Viajar nunca foi tão fácil!
-  </p>
-</div>
+      O Travellist é seu parceiro de viagem confiável, proporcionando uma experiência que permite desfrutar ao máximo de cada jornada. Viajar nunca foi tão fácil!
+    </p>
+  </div>
+
+<%# ===== Menu inferior estilo "mobile" ===== %>
+  <nav class="mobile-nav">
+
+      <% if current_user %>
+        <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+          <i class="far fa-user-circle"></i>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+          <i class="far fa-user-circle"></i>
+        <% end %>
+      <% end %>
+
+      <% if current_user %>
+        <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+          <i class="fas fa-align-center"></i>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+          <i class="fas fa-align-center"></i>
+        <% end %>
+      <% end %>
+
+      <% if current_user %>
+        <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+          <i class="far fa-comment-dots"></i>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+          <i class="far fa-comment-dots"></i>
+        <% end %>
+      <% end %>
+
+      <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "bloc-icon", style: 'text-decoration: none;' do %>
+       <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      <% end %>
+
+  </nav>
