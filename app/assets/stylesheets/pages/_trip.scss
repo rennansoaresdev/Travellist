@@ -1,3 +1,24 @@
+.trip-banner {
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), asset-url("logo.png");
+  margin-bottom: 12px;
+  padding: 100px 28px;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-weight: bold;
+  h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 32px;
+    text-transform: uppercase;
+  }
+  .trip-banner-info {
+    display: flex;
+    gap: 4px;
+  }
+}
+
 .trip-session {
   border: 0px;
   box-shadow: 4px 4px 8px 0px rgba($color: #9d9d9d, $alpha: 0.8);
