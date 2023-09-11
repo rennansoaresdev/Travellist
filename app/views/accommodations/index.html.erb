@@ -15,34 +15,34 @@
   }
 </style>
 <div class="container">
-  <div class="custom-card">
-    <h1 class="text-center page-title" style="font-size: 36px; color: #000000;">Minhas Acomodações</h1>
-    <h4 class="text-center">Viagem para: <%= link_to (@trip.name.capitalize), trip_path(@trip) %> 🛫</h4>
-    <br>
-    <div class="row">
-      <% @accommodations.each do |accommodation| %>
-        <div class="col-md-12 mb-8">
-          <div class="card w-75 mb-5 hoverable hover-card" style="border-radius: 15px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); background-color: #94B49F;">
-            <div class="card-body pl-6" style="border-radius: 0 0 15px 15px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); background-color: #ffffff;">
-              <div style="display: flex; justify-content: space-between; ">
-                <p class="card-text accommodation-name"><strong>Acomodação: </strong><%= accommodation.name %></p>
-                <div class="details-toggle">
-                  <p class="toggle-trigger" style="margin-left: 20px; "><strong> Detalhes ▼</strong></p>
-                  <div class="toggle-content">
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <p><strong>URL:</strong> <a href="<%= accommodation.url %>" target="_blank"><%= accommodation.url %></a></p>
-                          <p><strong>Endereço:</strong> <%= accommodation.address %></p>
-                          <p><strong>Preço:</strong> R$ <%= number_to_currency(accommodation.price, unit: "", separator: ",", delimiter: ".") %></p>
-                        </div>
-                        <div class="col-md-6">
-                          <p><strong>Capacidade:</strong> <%= accommodation.capacity %></p>
-                          <p><strong>Tipo:</strong> <%= accommodation.category %></p>
-                          <p><strong>Check-in:</strong> <%= accommodation.checkin_time.strftime('%d/%m/%Y %H:%M') %></p>
-                          <p><strong>Check-out:</strong> <%= accommodation.checkout_time.strftime('%d/%m/%Y %H:%M') %></p>
-                        </div>
-                      </div>
+    <div class="custom-card">
+      <h1 class="text-center" style=" margin-rigth: 20px; font-size: 30px; color: #000000;">Minhas Acomodações</h1> <br>
+      <h4 class="">Viagem para: <%= link_to (@trip.name.titleize), trip_path(@trip) %></h4>
+       <div class="row">
+    <% @accommodations.each do |accommodation| %>
+      <div class="col-md-12 mb-8">
+        <div class="card w-80 mb-4 hoverable hover-card" style="border-radius: 15px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); background-color: 235, 235, 235;">
+          <div class="card-body w-100 pl-6" style="border-radius: 15px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); background-color: #ffffff;">
+            <div style="display: flex; justify-content: space-between; ">
+              <p class="card-text accommodation-name"><strong>Acomodação: </strong><%= accommodation.name.titleize %></p>
+              <p><%= link_to "", edit_accommodation_path(accommodation), class: "fa-regular fa-pen-to-square" %></p>
+              <p><%= link_to "", trip_accommodation_path(@trip, accommodation), data: { turbo_method: :delete, turbo_confirm: "Deseja deletar #{accommodation.name.titleize} ?"}, class: "fa-solid fa-trash" %></p>
+            </div>
+            <div class="details-toggle">
+              <p class="toggle-trigger" style="margin-rigth: 20px; "><strong>+</strong></p>
+              <div class="toggle-content">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p><strong>URL:</strong> <a href="<%= accommodation.url %>" target="_blank"><%= accommodation.url %></a></p>
+                      <p><strong>Endereço:</strong> <%= accommodation.address %></p>
+                      <p><strong>Preço:</strong> R$ <%= number_to_currency(accommodation.price, unit: "", separator: ",", delimiter: ".") %></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p><strong>Capacidade:</strong> <%= accommodation.capacity %></p>
+                      <p><strong>Tipo:</strong> <%= accommodation.category %></p>
+                      <p><strong>Check-in:</strong> <%= accommodation.checkin_time.strftime('%d/%m/%Y %H:%M') %></p>
+                      <p><strong>Check-out:</strong> <%= accommodation.checkout_time.strftime('%d/%m/%Y %H:%M') %></p>
                     </div>
                   </div>
                 </div>
@@ -50,10 +50,11 @@
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
-</div>
+<div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
