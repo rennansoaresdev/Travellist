@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: %i[show edit update]
+  before_action :set_ticket, only: %i[show edit update destroy]
   # Listagem de passagens: Se usuário estiver logado
   def index
     @tickets = Ticket.where(trip_id: params[:trip_id])
@@ -33,6 +33,11 @@ class TicketsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @ticket.destroy
+    redirect_to trip_path(@ticket.trip), status: :see_other
   end
 
   private
