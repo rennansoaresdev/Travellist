@@ -17,6 +17,7 @@
         <%= form.input :price %>
         <%= form.input :name%>
         <%= form.input :address %>
+        <%= form.input :photo, as: :file, label: 'Foto de capa', input_html: { multiple: false } %>
         <div class="actions">
           <%= form.button :submit, "Concluir", class: "btn btn-primary" %>
           <%= link_to "voltar para detalhes", trip_accommodations_path(@trip), class: "btn btn-primary" %>

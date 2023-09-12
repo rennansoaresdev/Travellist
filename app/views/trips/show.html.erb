@@ -101,23 +101,39 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-5">
+    <div class="col-md-12 mb-8">
       <%# Accommodations %>
       <div class="trip-section">
+        <div class="banner-accommodation" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7))">
+          <%= image_tag('accommodation.jpg', alt: 'Banner de acomodação', class: 'img-fluid') %>
+        </div>
         <h2><%= link_to 'Acomodações', trip_accommodations_path(@trip), class: 'text-decoration-none' %></h2>
         <% if @trip.accommodations.present? %>
-          <ul>
+          <div class="list-group overflow-auto" style="max-height: 300px;"> <!-- Ajuste a altura máxima conforme necessário -->
             <% @trip.accommodations.order(:updated_at).take(2).each do |accommodation| %>
-              <li>
-                <h5><%= accommodation.name %></h5>
-                <p>Espaço para <%= accommodation.capacity %> pessoas</p>
-                <p>Tipo: <%= accommodation.category %></p>
-                <p><%= link_to 'Visitar site', accommodation.url, target: '_blank', class: 'btn btn-primary rounded-5' %></p>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5><%= accommodation.name.titleize %></h5>
+                    <p>Tipo: <%= accommodation.category %></p>
+                    <p>Espaço para <%= accommodation.capacity %> pessoas</p>
+                  </div>
+                  <div class="col-md-6">
+                    <% checkin_time = accommodation.checkin_time %>
+                    <% checkout_time = accommodation.checkout_time %>
+                    <% if checkin_time.present? && checkout_time.present? %>
+                      <p>Estadia: <%= (checkout_time.to_date - checkin_time.to_date).to_i %> dias</p>
+                    <% else %>
+                      <p>Datas de check-in e check-out não estão definidas.</p>
+                    <% end %>
+                    <p><%= link_to 'Visitar site', accommodation.url, target: '_blank', class: 'btn btn-primary rounded-5' %></p>
+                  </div>
+                </div>
               </li>
             <% end %>
-          </ul>
+          </div>
         <% else %>
-          <div class="trip-section-empty">
+        <div class="trip-section-empty">
             <p>Não há acomodações adicionadas à sua viagem.</p>
             <%= link_to new_trip_accommodation_path(@trip), class: 'trip-section-btn-add' do %>
               <i class="fa-solid fa-plus"></i>

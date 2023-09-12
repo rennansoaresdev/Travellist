@@ -2,6 +2,8 @@ class Accommodation < ApplicationRecord
   belongs_to :user
   belongs_to :trip
 
+  has_one_attached :photo
+  
   validates :checkin_time, presence: true
   validates :name, presence: true, uniqueness: { scope: :trip }
   validates :checkout_time, comparison: { greater_than: :checkin_time }
