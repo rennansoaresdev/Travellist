@@ -46,9 +46,9 @@
 
       <% if current_user && current_user.photo.present? %>
         <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <div class="avatar">
-            <%= cl_image_tag current_user.photo.key, width: 30, height: 30 %>
-          </div>
+
+            <%= cl_image_tag current_user.photo.key, class:"avatar"%>
+         
         <% end %>
         <% elsif current_user.nil? %>
           <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
