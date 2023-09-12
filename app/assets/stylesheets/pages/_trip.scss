@@ -1,9 +1,54 @@
-.trip-session {
+a {
+  text-decoration: none;
+}
+.btn-back {
+  color: white;
+  font-size: 24px;
+  border: 2px solid white;
+  padding: 12px 14px;
+  border-radius: 50%;
+  position: absolute;
+  left: 16px;
+  top: 40px;
+}
+
+.trip-banner {
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), asset-url("trip-banner-placeholder.jpg");
+  object-fit: cover;
+  margin-bottom: 12px;
+  padding: 200px 28px 20px 28px;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-weight: bold;
+  position: relative;
+  h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 40px;
+  }
+}
+
+.trip-banner-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  p {
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+  }
+}
+
+.trip-section {
   border: 0px;
   box-shadow: 4px 4px 8px 0px rgba($color: #9d9d9d, $alpha: 0.8);
   border-radius: 5px;
-  padding: 16px 8px;
-  background-color: #94B49F;
+  padding: 16px 12px;
+  background-color: rgb(235, 235, 235);
+  position: relative;
+  // background-color: #94B49F;
   h2 {
     text-align: start;
     margin-top: 8px;
@@ -20,6 +65,31 @@
   .avatar {
     width: 24px;
     height: 24px;
+  }
+
+  .trip-section-btn-add {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin: 0;
+    padding: 6px 12px;
+    background-color: #94B49F;
+    border: 1px solid #789281;
+    display: inline-block;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 85%;
+  }
+
+  .trip-section-empty {
+    p {
+      margin: 24px auto;
+      color: rgb(86, 86, 86);
+      font-size: 12px;
+      font-weight: light;
+      text-align: center;
+    }
   }
 
   .trip-card-button {

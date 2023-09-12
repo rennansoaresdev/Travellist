@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  get 'tasks/create'
   devise_for :users
   root to: "pages#home"
 
   resources :trips do
     resources :tickets, only: %i[index new create]
-    resources :accommodations, only: %i[index new create]
+    resources :accommodations, only: %i[index new create destroy]
     resources :groups, only: %i[new create]
     resources :tasks, only: :create
   end

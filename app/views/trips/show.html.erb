@@ -1,20 +1,48 @@
-<div class="container">
-  <h1 class="my-3"><%= @trip.name %></h1>
-
-  <%# Flex row between sessions %>
-  <div class="row gap-3">
-    <div class="col-12">
-      <div class="trip-session">
-        <h2>Detalhes da viagem</h2>
-        <p>Destino: <%= @trip.destination %></p>
-        <p>Início: <%= @trip.start_date %></p>
-        <p>Fim: <%= @trip.end_date %></p>
+<%# Trip banner %>
+<div class="trip-banner" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), <%= @trip.photo.present? ? "url('#{cl_image_path @trip.photo.key}')" : "asset-url('trip-banner-placeholder.jpg')" %>;">
+<%# <div class="trip-banner"> %>
+<%= link_to trips_path do %>
+  <i class="fa-solid fa-arrow-left btn-back"></i>
+<% end %>
+<h1 class="my-3"><%= @trip.name %></h1>
+  <div class="row my-5 gy-3 justify-content-between">
+    <div class="col-6">
+      <div class="trip-banner-info">
+        <i class="fa-solid fa-location-dot"></i>
+        <p><%= @trip.destination %></p>
       </div>
     </div>
+    <div class="col-6">
+      <div class="trip-banner-info">
+        <i class="fa-regular fa-calendar-days"></i>
+        <p><%= "#{(@trip.end_date - @trip.start_date).to_i} dias" %></p>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="trip-banner-info">
+        <i class="fa-solid fa-people-group"></i>
+        <p>X viajantes</p>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="trip-banner-info">
+        <i class="fa-solid fa-hand-holding-dollar"></i>
+        <% if @trip.budget_per_user.present? %>
+          <p><%= number_to_currency @trip.budget_per_user, unit: 'R$ ', precision: 2, separator: ',', delimiter: '.' %></p>
+        <% else %>
+          <p>Não informado</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="container">
+  <%# Flex row between sections %>
+  <div class="row gap-3">
     <div class="col-12 col-md-5">
       <%# Tickets %>
-      <div class="trip-session">
+      <div class="trip-section">
         <h2><%= link_to 'Passagens', trip_tickets_path(@trip), class: 'text-decoration-none' %></h2>
         <% if @trip.tickets.present? %>
           <ul class="list-unstyled">
@@ -63,9 +91,11 @@
             <% end %>
           </ul>
         <% else %>
-          <div>
+          <div class="trip-section-empty">
             <p>Não há passagens adicionadas à sua viagem.</p>
-            <%= link_to 'Nova passagem', new_trip_ticket_path(@trip), class: 'btn btn-primary rounded-5'  %>
+            <%= link_to new_trip_ticket_path(@trip), class: 'trip-section-btn-add' do %>
+              <i class="fa-solid fa-plus"></i>
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -73,7 +103,7 @@
 
     <div class="col-12 col-md-5">
       <%# Accommodations %>
-      <div class="trip-session">
+      <div class="trip-section">
         <h2><%= link_to 'Acomodações', trip_accommodations_path(@trip), class: 'text-decoration-none' %></h2>
         <% if @trip.accommodations.present? %>
           <ul>
@@ -87,9 +117,11 @@
             <% end %>
           </ul>
         <% else %>
-          <div>
+          <div class="trip-section-empty">
             <p>Não há acomodações adicionadas à sua viagem.</p>
-            <%= link_to 'Nova acomodação', new_trip_accommodation_path(@trip), class: 'btn btn-primary rounded-5'  %>
+            <%= link_to new_trip_accommodation_path(@trip), class: 'trip-section-btn-add' do %>
+              <i class="fa-solid fa-plus"></i>
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -97,7 +129,7 @@
 
     <%# Tasks %>
     <div class="col-12 col-md-5">
-      <div class="trip-session">
+      <div class="trip-section">
         <h2>Tarefas</h2>
         <% if @trip.tasks.present? %>
           <ul class="list-unstyled my-3">
@@ -126,14 +158,17 @@
             <% end %>
           </ul>
         <% else %>
-          <p>Você ainda não adicionou tarefas para esta viagem, <%= current_user.first_name %>.</p>
+        <div class="trip-section-empty">
+          <p>Você não tem tarefas para esta viagem, <%= current_user.first_name %>.</p>
+        </div>
         <% end %>
         <%= simple_form_for [@trip, @task] do |f|%>
           <%= f.input :description, as: :string,
                       label: 'Descrição da tarefa:',
                       class: 'form-control' %>
           <div class='input-group-append'>
-            <%= f.submit 'Criar', class: 'btn btn-primary' %>
+            <%= f.submit 'Criar', class: 'btn btn-primary rounded-5 shadow' do %>
+            <% end %>
           </div>
         <% end %>
       </div>
