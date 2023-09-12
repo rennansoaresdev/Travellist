@@ -48,6 +48,7 @@
           <%= form.input :checkin_time, label: 'Check-in' %>
           <%= form.input :checkout_time, label: 'Check-out' %>
           <%= form.input :url, label: 'URL' %>
+          <%= form.input :photo, as: :file, label: 'Foto de capa', input_html: { multiple: false } %>
           <%= form.button :submit, "Criar Acomodação", class: "btn btn-primary btn-block" %> <br>
           <br>
           <%= link_to "Voltar para Acomodações", trip_accommodations_path, class: "btn btn-primary " %>

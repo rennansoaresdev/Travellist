@@ -8,6 +8,7 @@ class TripsController < ApplicationController
 
   def show
     @task = Task.new
+    @member = Member.new
   end
 
   def new
