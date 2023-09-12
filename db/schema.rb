@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_10_214013) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_12_132627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,13 +59,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_10_214013) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "groups", force: :cascade do |t|
-    t.bigint "member_id", null: false
+  create_table "members", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.bigint "trip_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_groups_on_member_id"
-    t.index ["trip_id"], name: "index_groups_on_trip_id"
+    t.index ["trip_id"], name: "index_members_on_trip_id"
+    t.index ["user_id"], name: "index_members_on_user_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -140,8 +140,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_10_214013) do
   add_foreign_key "accommodations", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "groups", "trips"
-  add_foreign_key "groups", "users", column: "member_id"
+  add_foreign_key "members", "trips"
+  add_foreign_key "members", "users"
   add_foreign_key "schedules", "trips"
   add_foreign_key "tasks", "trips"
   add_foreign_key "tickets", "trips"

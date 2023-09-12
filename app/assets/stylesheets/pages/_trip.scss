@@ -1,15 +1,31 @@
 a {
   text-decoration: none;
 }
-.btn-back {
+.btn-white-round {
   color: white;
-  font-size: 24px;
   border: 2px solid white;
-  padding: 12px 14px;
   border-radius: 50%;
+}
+
+.btn-back {
+  font-size: 24px;
+  padding: 12px 14px;
   position: absolute;
   left: 16px;
   top: 40px;
+}
+
+.btn-new-member {
+  background: transparent;
+  font-size: 24px;
+  padding: 6px 10px;
+  position: absolute;
+  right: 16px;
+  top: 38px;
+
+  &:active {
+    background: transparent;
+  }
 }
 
 .trip-banner {

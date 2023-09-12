@@ -1,5 +1,5 @@
 class Trip < ApplicationRecord
-  has_many :groups
+  has_many :members
   has_many :tasks
   has_many :users, through: :groups
   has_many :accommodations
