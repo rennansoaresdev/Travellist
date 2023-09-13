@@ -3,9 +3,7 @@ class TripsController < ApplicationController
 
   def index
     # Necessário adicionar viagens criadas por OUTRAS pessoas, mas que o current_user pertença ao grupo
-    @trips = []
-    @trips << Trip.where(owner: current_user)
-    @trips << Member.where(user: current_user).map { |member| member.trip }
+    @trips = Trip.joins(:members).where('owner_id = :user OR members.user_id = :user', user: current_user)
   end
 
   def show
