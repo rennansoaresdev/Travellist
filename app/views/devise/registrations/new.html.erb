@@ -14,7 +14,9 @@
                       label: 'Sobrenome:' %>
           <%= f.input :birth_date,
                       label: 'Data de nascimento:',
-                      start_year: Date.today.year - 100 %>
+                      as: :string,
+                      label_html: { class: "text-secondary" },
+                      input_html: { data: { controller: "flatpickr-date" } }  %>
           <%= f.input :gender,
                       label: 'Gênero:',
                       collection: User::GENDERS,
