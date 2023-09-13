@@ -1,12 +1,11 @@
 
 
-<div class="container">
-  <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <div class="card custom-card mt-2">
-      <div class="card-header w-100">
-        <h1 class="text-center">Alterar Acomodação</h1>
+<div class="container-sm">
+  <div class="session-form">
+    <div class="banner-form-accommodation">
+        <h2 class="text-center">Alterar Acomodação</h2>
       </div>
-      <div class="card-body w-100 p-2">
+      <div class="card-body w-100 p-3">
       <%= simple_form_for(@accommodation) do |form| %>
         <%= form.error_notification %>
         <%= form.input :url %>
@@ -18,9 +17,10 @@
         <%= form.input :name%>
         <%= form.input :address %>
         <%= form.input :photo, as: :file, label: 'Foto de capa', input_html: { multiple: false } %>
-        <div class="actions">
-          <%= form.button :submit, "Concluir", class: "btn btn-primary" %>
-          <%= link_to "voltar para detalhes", trip_accommodations_path(@trip), class: "btn btn-primary" %>
+
+        <div class="form-actions">
+          <%= form.button :submit, "Concluir", class: "button-lg-login" %>
+          <%= link_to "Voltar", trip_path, class: "button-lg" %>
         </div>
       <% end %>
       </div>

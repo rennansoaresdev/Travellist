@@ -1,23 +1,26 @@
-<div class="card">
-  <div class="card-header">
-    <h1>Edit Ticket</h1>
-  </div>
-  <div class="card-body">
-    <%= simple_form_for(@ticket) do |form| %>
-      <%= form.error_notification %>
-      <%= form.input :url %>
-      <%= form.input :start_time %>
-      <%= form.input :end_time %>
-      <%= form.input :origin %>
-      <%= form.input :destination %>
-      <%= form.input :seat, required: false %>
-      <%= form.input :gate, required: false %>
-      <%= form.input :price %>
-      <%= form.input :company_name %>
-      <div class="actions">
-        <%= form.button :submit, "Update Ticket", class: "btn btn-primary" %>
-        <%= link_to "Back to Ticket Details", @ticket, class: "btn btn-primary" %>
+<div class="container-sm">
+  <div class="session-form">
+    <div class="banner-form-ticket">
+
+      <h2 class="text-center">Edit Ticket</h2>
+    </div>
+    <div class="card-body">
+      <%= simple_form_for(@ticket) do |form| %>
+        <%= form.error_notification %>
+        <%= form.input :url %>
+        <%= form.input :start_time %>
+        <%= form.input :end_time %>
+        <%= form.input :origin %>
+        <%= form.input :destination %>
+        <%= form.input :seat, required: false %>
+        <%= form.input :gate, required: false %>
+        <%= form.input :price %>
+        <%= form.input :company_name %>
+      <div class="form-actions-ticket">
+        <%= form.button :submit, "Update Ticket", class: "button-lg-login" %>
+        <%= link_to "Voltar", trip_path, class: "button-lg" %>
       </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

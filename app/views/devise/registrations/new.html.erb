@@ -1,46 +1,48 @@
 <div class="container-sm">
   <div class="session-form">
-  <h2 class="text-center my-4">Registrar-se</h2>
+    <div class="banner-form-register">
+      <h2 class="text-center my-4">Registrar-se</h2>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= f.error_notification %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
 
-    <div class="form-inputs">
-      <%= f.input :first_name,
-                  label: 'Nome:',
-                  autofocus: true %>
-      <%= f.input :last_name,
-                  label: 'Sobrenome:' %>
-      <%= f.input :birth_date,
-                  label: 'Data de nascimento:',
-                  start_year: Date.today.year - 100 %>
-      <%= f.input :gender,
-                  label: 'Gênero:',
-                  collection: User::GENDERS,
-                  include_blank: false %>
-      <%= f.input :city,
-                  label: 'Cidade:' %>
-      <%= f.input :country,
-                  label: 'País:' %>
-      <%= f.input :email,
-                  label: 'E-mail:',
-                  required: true %>
-      <%= f.input :password,
-                  label: 'Senha',
-                  required: true,
-                  hint: ("Mínimo de #{@minimum_password_length} caracteres" if @minimum_password_length) %>
-      <%= f.input :password_confirmation,
-                  label: 'Repita a senha',
-                  hint: 'As senhas devem corresponder',
-                  required: true %>
-      <%= f.input :photo, as: :file,
-                  label: 'Foto de perfil:' %>
-    </div>
+        <div class="form-inputs">
+          <%= f.input :first_name,
+                      label: 'Nome:',
+                      autofocus: true %>
+          <%= f.input :last_name,
+                      label: 'Sobrenome:' %>
+          <%= f.input :birth_date,
+                      label: 'Data de nascimento:',
+                      start_year: Date.today.year - 100 %>
+          <%= f.input :gender,
+                      label: 'Gênero:',
+                      collection: User::GENDERS,
+                      include_blank: false %>
+          <%= f.input :city,
+                      label: 'Cidade:' %>
+          <%= f.input :country,
+                      label: 'País:' %>
+          <%= f.input :email,
+                      label: 'E-mail:',
+                      required: true %>
+          <%= f.input :password,
+                      label: 'Senha',
+                      required: true,
+                      hint: ("Mínimo de #{@minimum_password_length} caracteres" if @minimum_password_length) %>
+          <%= f.input :password_confirmation,
+                      label: 'Repita a senha',
+                      hint: 'As senhas devem corresponder',
+                      required: true %>
+          <%= f.input :photo, as: :file,
+                      label: 'Foto de perfil:' %>
+        </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, "Sign up"%>
-    </div>
+        <div class="form-actions mb-5">
+          <%= f.button :submit, "Registrar", class:"button-lg-login"%>
+          <%= render "devise/shared/links"%>
+        </div>
+      </div>
   <% end %>
 </div>
-  <%= render "devise/shared/links" %>
 </div>

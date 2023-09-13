@@ -1,29 +1,30 @@
 <div class="modal fade" id="new_member_modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content rounded-5">
-      <div class="modal-header">
-        <h5 class="modal-title">Gerenciar membros em <%= trip.name %></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-        </button>
+    <div class="modal-content modal-border-20 bg-white ">
+      <div class="banner-form-modal bg-white p-0">
+        <h6>Gerenciar membros em: <h4><%= trip.name %></h4></h6>
+
+
       </div>
 
-      <%= simple_form_for [trip, member], remote: true do |f| %>
-        <div class="modal-body">
+      <%= simple_form_for [trip, member], remote: true, class:"modal-border-20" do |f| %>
+        <div class="modal-body bg-white">
           <%= f.association :user,
                             collection: User.where.not(id: current_user).order(:first_name),
                             label_method: :first_name,
                             value_method: :id,
                             label: "Selecionar membro",
                             prompt: "Selecionar...",
-                            input_html: { data: { controller: "user-select" } } %>
+                            input_html: { data: { controller: "user-select" },
+                            class: "bg-white" } %>
         </div>
-        <div class="container">
+        <div class="container bg-white">
           <%# O que é exibido se tiver membros %>
           <% if @trip.members.present? %>
               <ul class="list-group">
                 <% @trip.members.each do |member| %>
                   <%# Código para cada um dos usuários da viagem %>
-                  <li class="list-group-item border-0">
+                  <li class="list-group-item border-0 bg-white">
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="d-flex gap-3 align-items-center">
                         <%# Verificação se tem foto no cloudinary %>
@@ -49,9 +50,8 @@
             <p>Não há membros convidados.</p>
           <% end %>
         </div>
-        <div class="modal-footer">
-          <%= f.submit "Convidar", class: "btn btn-primary" %>
-          <button type="button" class="btn btn-flat" data-bs-dismiss="modal">Voltar</button>
+        <div class="modal-footer modal-border-radius bg-white justify-content-center">
+          <%= f.submit "Convidar", class: "button-lg-login" %>
         </div>
       <% end %>
     </div>
