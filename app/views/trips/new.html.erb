@@ -9,10 +9,14 @@
                         label: 'Para onde você vai?' %>
             <%= f.input :start_date,
                         label: 'Data de ida:',
-                        start_year: Date.today.year %>
+                        as: :string,
+                        label_html: { class: "text-secondary" },
+                        input_html: { data: { controller: "flatpickr-date" } }  %>
             <%= f.input :end_date,
                         label: 'Data de volta:',
-                        start_year: Date.today.year %>
+                        as: :string,
+                        label_html: { class: "text-secondary" },
+                        input_html: { data: { controller: "flatpickr-date" } } %>
             <%= f.input :photo,
                         as: :file,
                         label: 'Foto de capa:',

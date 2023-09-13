@@ -9,8 +9,14 @@
       <%= simple_form_for(@accommodation) do |form| %>
         <%= form.error_notification %>
         <%= form.input :url %>
-        <%= form.input :checkin_time  %>
-        <%= form.input :checkout_time  %>
+        <%= form.input :checkin_time,
+                        as: :string,
+                        label_html: { class: "text-secondary" },
+                        input_html: { data: { controller: "flatpickr" } }  %>
+        <%= form.input :checkout_time,
+                        as: :string,
+                        label_html: { class: "text-secondary" },
+                        input_html: { data: { controller: "flatpickr" } }  %>
         <%= form.input :category %>
         <%= form.input :capacity %>
         <%= form.input :price %>
