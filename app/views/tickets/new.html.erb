@@ -7,8 +7,14 @@
       <%= form.error_notification %>
 
       <%= form.input :url %>
-      <%= form.input :start_time %>
-      <%= form.input :end_time %>
+      <%= form.input :start_time,
+                     as: :string,
+                     label_html: { class: "text-secondary" },
+                     input_html: { data: { controller: "flatpickr" } }  %>
+      <%= form.input :end_time,
+                     as: :string,
+                     label_html: { class: "text-secondary" },
+                     input_html: { data: { controller: "flatpickr" } }  %>
       <%= form.input :origin %>
       <%= form.input :destination %>
       <%= form.input :seat, required: false %>
