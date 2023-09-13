@@ -1,24 +1,32 @@
-<div class="card">
-  <div class="card-header">
-    <h1>Nova passagem</h1>
-  </div>
-  <div class="card-body">
-    <%= simple_form_for [@trip, @ticket] do |form| %>
-      <%= form.error_notification %>
+<div class="container-sm">
+  <div class="session-form">
+    <div class="banner-form-ticket">
 
-      <%= form.input :url %>
-      <%= form.input :start_time %>
-      <%= form.input :end_time %>
-      <%= form.input :origin %>
-      <%= form.input :destination %>
-      <%= form.input :seat, required: false %>
-      <%= form.input :gate, required: false %>
-      <%= form.input :price %>
-      <%= form.input :company_name %>
+      <h2 class="text-center">Nova passagem</h2>
 
-      <div class="actions">
-        <%= form.button :submit, "Adicionar", class: "btn btn-primary" %>
-      </div>
-    <% end %>
+      <%= simple_form_for [@trip, @ticket] do |form| %>
+        <%= form.error_notification %>
+
+        <%= form.input :url %>
+        <%= form.input :start_time,
+                      as: :string,
+                      label_html: { class: "text-secondary" },
+                      input_html: { data: { controller: "flatpickr" } }  %>
+        <%= form.input :end_time,
+                      as: :string,
+                      label_html: { class: "text-secondary" },
+                      input_html: { data: { controller: "flatpickr" } }  %>
+        <%= form.input :origin %>
+        <%= form.input :destination %>
+        <%= form.input :seat, required: false %>
+        <%= form.input :gate, required: false %>
+        <%= form.input :price %>
+        <%= form.input :company_name %>
+
+        <div class="form-actions-ticket">
+          <%= form.button :submit, "Adicionar", class: "button-lg-login" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

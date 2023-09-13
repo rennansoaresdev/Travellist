@@ -1,26 +1,30 @@
-<div class="container justify-content-center mt-5">
-  <div class="row justify-content-center align-items-center">
-      <div class="col-10 col-md-6 col-lg-4">
-        <div class="card p-4 border-0 rounded-5 shadow">
-          <h1 class="text-center my-3">Alterar dados</h1>
+<div class="container-sm-modal">
+  <div class="session-form">
+    <div class="banner-form-trip">
+          <h2 class="text-center">Alterar dados</h2>
            <%= simple_form_for @trip do |f| %>
             <%= f.input :name,
                         label: 'Novo nome:' %>
             <%= f.input :destination,
                         label: 'Alterar destino:' %>
             <%= f.input :start_date,
+                        as: :string,
                         label: 'Data de ida:',
-                        start_year: Date.today.year %>
+                        start_year: Date.today.year,
+                        label_html: { class: "text-secondary" },
+                        input_html: { data: { controller: "flatpickr-date" } }  %>
             <%= f.input :end_date,
                         label: 'Data de volta:',
-                        start_year: Date.today.year %>
+                        start_year: Date.today.year,
+                        as: :string,
+                        label_html: { class: "text-secondary" },
+                        input_html: { data: { controller: "flatpickr-date" } }  %>
             <%= f.input :budget_per_user,
                         label: 'Gasto por viajante:',
                         hint: 'Caso queira, pode deixar em branco! 😉' %>
-            <div class="row">
-              <%= f.submit class: 'btn btn-primary rounded-5' %>
+            <div class="form-actions">
+              <%= f.submit class: 'button-lg-login' %>
           <% end %>
-        </div>
-      </div>
     </div>
+  </div>
 </div>
