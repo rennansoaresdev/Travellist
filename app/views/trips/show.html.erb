@@ -109,16 +109,17 @@
         </div>
         <h2><%= link_to 'Acomodações', trip_accommodations_path(@trip), class: 'text-decoration-none' %></h2>
         <% if @trip.accommodations.present? %>
-          <div class="list-group overflow-auto" style="max-height: 300px;"> <!-- Ajuste a altura máxima conforme necessário -->
+
+          <div class="list-group overflow-auto" style="max-height: 300px;">
             <% @trip.accommodations.order(:updated_at).take(2).each do |accommodation| %>
-              <li class="list-group-item">
+            <%= link_to trip_accommodations_path(@trip), class: 'text-decoration-none' do %>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-6 col-md-6">
                     <h5><%= accommodation.name.titleize %></h5>
                     <p>Tipo: <%= accommodation.category %></p>
                     <p>Espaço para <%= accommodation.capacity %> pessoas</p>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-6 col-md-6">
                     <% checkin_time = accommodation.checkin_time %>
                     <% checkout_time = accommodation.checkout_time %>
                     <% if checkin_time.present? && checkout_time.present? %>
@@ -129,9 +130,11 @@
                     <p><%= link_to 'Visitar site', accommodation.url, target: '_blank', class: 'btn btn-primary rounded-5' %></p>
                   </div>
                 </div>
-              </li>
+              <% end %>
+              <hr>
             <% end %>
           </div>
+
         <% else %>
         <div class="trip-section-empty">
             <p>Não há acomodações adicionadas à sua viagem.</p>
@@ -147,8 +150,19 @@
     <div class="col-12 col-md-5">
       <div class="trip-section">
         <h2>Tarefas</h2>
+          <div id="add-task-form" style="display: none;">
+            <%= simple_form_for [@trip, @task], remote: true do |f|%>
+              <%= f.input :description, as: :string,
+                          label: 'Descrição da tarefa:',
+                          class: 'form-control' %>
+              <div class='input-group-append'>
+                <%= f.submit 'Criar', class: 'btn btn-primary rounded-5 shadow' do %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         <% if @trip.tasks.present? %>
-          <ul class="list-unstyled my-3">
+          <ul class="list-unstyled my-3 overflow-auto">
             <% @trip.tasks.order(:done, :description).each do |task| %>
               <li>
                 <div class="form-check" data-controller='task'>
@@ -170,6 +184,12 @@
                     <i class="fa-solid fa-trash-can"></i>
                   <% end %>
                 </div>
+                <div class="position-absolute top-0 end-0">
+                  <button id="open-task-form-button" class="btn toggle-button rounded-circle shadow btn-success">
+                    <i class="fas fa-plus"></i>
+                    <i class="fa-solid fa-minus" style="display: none;"></i>
+                  </button>
+              </div>
               </li>
             <% end %>
           </ul>
@@ -178,16 +198,32 @@
           <p>Você não tem tarefas para esta viagem, <%= current_user.first_name %>.</p>
         </div>
         <% end %>
-        <%= simple_form_for [@trip, @task] do |f|%>
-          <%= f.input :description, as: :string,
-                      label: 'Descrição da tarefa:',
-                      class: 'form-control' %>
-          <div class='input-group-append'>
-            <%= f.submit 'Criar', class: 'btn btn-primary rounded-5 shadow' do %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>
+
+<script>
+  // Use JavaScript para mostrar/ocultar o formulário de criação de tarefa
+  document.getElementById('open-task-form-button').addEventListener('click', function() {
+    var formDiv = document.getElementById('add-task-form');
+    var button = document.getElementById('open-task-form-button');
+    var plusIcon = button.querySelector('.fa-plus');
+    var minusIcon = button.querySelector('.fa-minus');
+
+    if (formDiv.style.display === 'none' || formDiv.style.display === '') {
+      formDiv.style.display = 'block';
+      plusIcon.style.display = 'none';
+      minusIcon.style.display = 'inline-block';
+
+      button.classList.add('btn-primary');
+      button.classList.remove('btn-success');
+    } else {
+      formDiv.style.display = 'none';
+      plusIcon.style.display = 'inline-block';
+      minusIcon.style.display = 'none';
+
+      button.classList.add('btn-success');
+      button.classList.remove('btn-primary');
+    }
+  });
+</script>
