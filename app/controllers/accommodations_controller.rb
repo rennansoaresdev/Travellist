@@ -50,6 +50,6 @@ class AccommodationsController < ApplicationController
 
 
   def accommodation_params
-    params.require(:accommodation).permit(:url, :checkin_time, :checkout_time, :price, :capacity, :category, :name, :address, :photo )
+    params.require(:accommodation).permit(:url, :checkin_time, :checkout_time, :price, :capacity, :category, :name, :address, :photo)
   end
 end
