@@ -1,42 +1,9 @@
-<style>
-  .custom-card {
-    width: 50%;
-    margin: 0 auto;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  }
+<div class="container-sm">
+  <div class="session-form">
+    <div class="banner-form-accommodation">
+      <h2 class="text-center">Nova Acomodação</h2>
+    </div>
 
-  .card-header h1 {
-    font-size: 24px;
-  }
-
-  .card-body {
-    padding: 20px;
-  }
-
-  @media screen and (max-width: 767px) {
-    .custom-card {
-      width: 90%;
-    }
-
-    .card-header h1 {
-      font-size: 20px;
-    }
-
-    .card-body {
-      padding: 10px;
-    }
-
-    .form-control {
-      font-size: 16px;
-    }
-  }
-</style>
-<div class="container">
-  <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <div class="card custom-card">
-      <div class="card-header w-100">
-        <h1 class="text-center">Nova Acomodação</h1>
-      </div>
       <div class="card-body p-3 w-100">
         <%= simple_form_for [@trip, @accommodation], html: { class: 'form' } do |form| %>
           <%= form.error_notification %>
@@ -57,11 +24,13 @@
                          input_html: { data: { controller: "flatpickr" } }  %>
           <%= form.input :url, label: 'URL' %>
           <%= form.input :photo, as: :file, label: 'Foto de capa', input_html: { multiple: false } %>
-          <%= form.button :submit, "Criar Acomodação", class: "btn btn-primary btn-block" %> <br>
-          <br>
-          <%= link_to "Voltar para Acomodações", trip_accommodations_path, class: "btn btn-primary " %>
-        <% end %>
-      </div>
+
+        <div calss="form-actions">
+          <%= form.button :submit, "Criar Acomodação", class: "button-lg-login"  %>
+          <%= link_to "Voltar", trip_accommodations_path, class: "button-lg"  %>
+          <% end %>
+        </div>
+
     </div>
   </div>
 </div>
