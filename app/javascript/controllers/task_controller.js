@@ -22,7 +22,7 @@ export default class extends Controller {
       dataType: "script",
       headers: {
               "X-CSRF-Token": this.#getMetaValue("csrf-token")
-       },
+      },
       body: form
     })
       .then(response => {

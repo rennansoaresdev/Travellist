@@ -98,7 +98,7 @@
           </ul>
         <% else %>
           <div class="trip-section-empty">
-            <p>Não há passagens adicionadas à sua viagem.</p>
+            <p>Não há passagens adicionadas à sua viagem!</p>
           </div>
         <% end %>
       </div>
@@ -107,21 +107,23 @@
     <div class="col-md-12 mb-8">
       <%# Accommodations %>
       <div class="trip-section">
-        <div class="banner-accommodation" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7))">
-          <%= image_tag('accommodation.jpg', alt: 'Banner de acomodação', class: 'img-fluid') %>
-        </div>
-        <h2><%= link_to 'Acomodações', trip_accommodations_path(@trip), class: 'text-decoration-none' %></h2>
-        <%= link_to new_trip_accommodation_path(@trip), class: 'trip-section-btn-add' do %>
-          <i class="fa-solid fa-plus"></i>
-        <% end %>
+
         <% if @trip.accommodations.present? %>
 
+        <h2><%= link_to 'Acomodações', trip_accommodations_path(@trip), class: 'text-black''text-decoration-none' %></h2>
           <div class="list-group overflow-auto" style="max-height: 300px;">
             <% @trip.accommodations.order(:updated_at).take(2).each do |accommodation| %>
-            <%= link_to trip_accommodations_path(@trip), class: 'text-decoration-none' do %>
-                <div class="row">
-                  <div class="col-6 col-md-6">
-                    <h5><%= accommodation.name.titleize %></h5>
+            <div class="banner-accommodation" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7))">
+              <% if accommodation.photo.attached? %>
+              <%= cl_image_tag(accommodation.photo.key, { alt: accommodation.name.titleize, class: 'img-fluid', style: 'width: 100%; height: 100%;', cloud_name: 'dmduttlvv' }) %>
+              <% else %>
+            <%= image_tag('accommodation.jpg', alt: 'Banner de acomodação', class: 'img-fluid') %>
+         <% end %>
+          </div>
+             <%= link_to accommodation_path, class: 'text-dark text-decoration-none' do %> <br>
+              <div class="row">
+                <div class="col-6 col-md-6">
+                 <strong><h5><%= accommodation.name.titleize %></h5></strong>
                     <p>Tipo: <%= accommodation.category %></p>
                     <p>Espaço para <%= accommodation.capacity %> pessoas</p>
                   </div>
