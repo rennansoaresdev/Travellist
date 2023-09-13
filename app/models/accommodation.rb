@@ -3,10 +3,11 @@ class Accommodation < ApplicationRecord
   belongs_to :trip
 
   has_one_attached :photo
-  
-  validates :checkin_time, presence: true
+
+  validates :price, presence: true
+  validates :checkin_time, presence: true, comparison: { greater_than: Date.today }
   validates :name, presence: true, uniqueness: { scope: :trip }
-  validates :checkout_time, comparison: { greater_than: :checkin_time }
+  validates :checkout_time, presence: true, comparison: { greater_than: :checkin_time }
   validates :capacity, numericality: { only_integers: true }
   validates :url, presence: true,
                   uniqueness: { scope: :trip },

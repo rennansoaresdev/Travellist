@@ -9,11 +9,17 @@
             <%= f.input :destination,
                         label: 'Alterar destino:' %>
             <%= f.input :start_date,
+                        as: :string,
                         label: 'Data de ida:',
-                        start_year: Date.today.year %>
+                        start_year: Date.today.year,
+                        label_html: { class: "text-secondary" },
+                        input_html: { data: { controller: "flatpickr-date" } }  %>
             <%= f.input :end_date,
                         label: 'Data de volta:',
-                        start_year: Date.today.year %>
+                        start_year: Date.today.year,
+                        as: :string,
+                        label_html: { class: "text-secondary" },
+                        input_html: { data: { controller: "flatpickr-date" } }  %>
             <%= f.input :budget_per_user,
                         label: 'Gasto por viajante:',
                         hint: 'Caso queira, pode deixar em branco! 😉' %>

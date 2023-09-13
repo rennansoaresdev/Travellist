@@ -45,8 +45,16 @@
           <%= form.input :price, label: 'Preço' %>
           <%= form.input :capacity, label: 'Capacidade' %>
           <%= form.input :category, label: 'Tipo' %>
-          <%= form.input :checkin_time, label: 'Check-in' %>
-          <%= form.input :checkout_time, label: 'Check-out' %>
+          <%= form.input :checkin_time,
+                         label: 'Check-in',
+                         as: :string,
+                         label_html: { class: "text-secondary" },
+                         input_html: { data: { controller: "flatpickr" } }  %>
+          <%= form.input :checkout_time,
+                         label: 'Check-out',
+                         as: :string,
+                         label_html: { class: "text-secondary" },
+                         input_html: { data: { controller: "flatpickr" } }  %>
           <%= form.input :url, label: 'URL' %>
           <%= form.input :photo, as: :file, label: 'Foto de capa', input_html: { multiple: false } %>
           <%= form.button :submit, "Criar Acomodação", class: "btn btn-primary btn-block" %> <br>

@@ -1,5 +1,3 @@
-
-
 <div class="container">
   <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
     <div class="card custom-card mt-2">
@@ -10,8 +8,14 @@
       <%= simple_form_for(@accommodation) do |form| %>
         <%= form.error_notification %>
         <%= form.input :url %>
-        <%= form.input :checkin_time  %>
-        <%= form.input :checkout_time  %>
+        <%= form.input :checkin_time,
+                        as: :string,
+                        label_html: { class: "text-secondary" },
+                        input_html: { data: { controller: "flatpickr" } }  %>
+        <%= form.input :checkout_time,
+                        as: :string,
+                        label_html: { class: "text-secondary" },
+                        input_html: { data: { controller: "flatpickr" } }  %>
         <%= form.input :category %>
         <%= form.input :capacity %>
         <%= form.input :price %>
@@ -20,7 +24,7 @@
         <%= form.input :photo, as: :file, label: 'Foto de capa', input_html: { multiple: false } %>
         <div class="actions">
           <%= form.button :submit, "Concluir", class: "btn btn-primary" %>
-          <%= link_to "voltar para detalhes", trip_accommodations_path(@trip), class: "btn btn-primary" %>
+          <%= link_to "voltar para detalhes", trip_accommodations_path(@accommodation.trip), class: "btn btn-primary" %>
         </div>
       <% end %>
       </div>
