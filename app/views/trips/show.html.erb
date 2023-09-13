@@ -2,8 +2,11 @@
 <div class="trip-banner" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), <%= @trip.photo.present? ? "url('#{cl_image_path @trip.photo.key}')" : "asset-url('trip-banner-placeholder.jpg')" %>;">
 <%# <div class="trip-banner"> %>
 <%= link_to trips_path do %>
-  <i class="fa-solid fa-arrow-left btn-back"></i>
+  <i class="fa-solid fa-arrow-left btn-white-round btn-back"></i>
 <% end %>
+<button type="button" class="btn-white-round btn-new-member" data-bs-toggle="modal" data-bs-target="#new_member_modal">
+    <i class="fa-solid fa-user-plus"></i>
+</button>
 <h1 class="my-3"><%= @trip.name %></h1>
   <div class="row my-5 gy-3 justify-content-between">
     <div class="col-6">
@@ -21,7 +24,7 @@
     <div class="col-6">
       <div class="trip-banner-info">
         <i class="fa-solid fa-people-group"></i>
-        <p>X viajantes</p>
+        <p><%= @trip.members.present? ? "#{@trip.members.count + 1} membros" : "Individual" %></p>
       </div>
     </div>
     <div class="col-6">
@@ -44,6 +47,9 @@
       <%# Tickets %>
       <div class="trip-section">
         <h2><%= link_to 'Passagens', trip_tickets_path(@trip), class: 'text-decoration-none' %></h2>
+        <%= link_to new_trip_ticket_path(@trip), class: 'trip-section-btn-add' do %>
+          <i class="fa-solid fa-plus"></i>
+        <% end %>
         <% if @trip.tickets.present? %>
           <ul class="list-unstyled">
             <% @trip.tickets.order(:updated_at).take(2).each do |ticket| %>
@@ -93,9 +99,6 @@
         <% else %>
           <div class="trip-section-empty">
             <p>Não há passagens adicionadas à sua viagem.</p>
-            <%= link_to new_trip_ticket_path(@trip), class: 'trip-section-btn-add' do %>
-              <i class="fa-solid fa-plus"></i>
-            <% end %>
           </div>
         <% end %>
       </div>
@@ -108,6 +111,9 @@
           <%= image_tag('accommodation.jpg', alt: 'Banner de acomodação', class: 'img-fluid') %>
         </div>
         <h2><%= link_to 'Acomodações', trip_accommodations_path(@trip), class: 'text-decoration-none' %></h2>
+        <%= link_to new_trip_accommodation_path(@trip), class: 'trip-section-btn-add' do %>
+          <i class="fa-solid fa-plus"></i>
+        <% end %>
         <% if @trip.accommodations.present? %>
 
           <div class="list-group overflow-auto" style="max-height: 300px;">
@@ -138,9 +144,6 @@
         <% else %>
         <div class="trip-section-empty">
             <p>Não há acomodações adicionadas à sua viagem.</p>
-            <%= link_to new_trip_accommodation_path(@trip), class: 'trip-section-btn-add' do %>
-              <i class="fa-solid fa-plus"></i>
-            <% end %>
           </div>
         <% end %>
       </div>
@@ -202,6 +205,7 @@
   </div>
 </div>
 
+<%= render "members/modal", trip: @trip, member: @member %>
 <script>
   // Use JavaScript para mostrar/ocultar o formulário de criação de tarefa
   document.getElementById('open-task-form-button').addEventListener('click', function() {

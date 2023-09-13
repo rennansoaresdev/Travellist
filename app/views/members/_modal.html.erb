@@ -1,0 +1,59 @@
+<div class="modal fade" id="new_member_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content rounded-5">
+      <div class="modal-header">
+        <h5 class="modal-title">Gerenciar membros em <%= trip.name %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+
+      <%= simple_form_for [trip, member], remote: true do |f| %>
+        <div class="modal-body">
+          <%= f.association :user,
+                            collection: User.where.not(id: current_user).order(:first_name),
+                            label_method: :first_name,
+                            value_method: :id,
+                            label: "Selecionar membro",
+                            prompt: "Selecionar...",
+                            input_html: { data: { controller: "user-select" } } %>
+        </div>
+        <div class="container">
+          <%# O que é exibido se tiver membros %>
+          <% if @trip.members.present? %>
+              <ul class="list-group">
+                <% @trip.members.each do |member| %>
+                  <%# Código para cada um dos usuários da viagem %>
+                  <li class="list-group-item border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-flex gap-3 align-items-center">
+                        <%# Verificação se tem foto no cloudinary %>
+                        <% if member.user.photo.present? %>
+                          <%= cl_image_tag member.user.photo.key, class: 'avatar' %>
+                        <% else %>
+                          <%= image_tag 'user-placeholder', class: 'avatar' %>
+                        <% end %>
+                        <p class="p-0 m-0" ><%= "#{member.user.first_name.capitalize}" %></p>
+                      </div>
+                      <%= link_to member_path(member),
+                                    data: { turbo_method: :delete,
+                                            turbo_confirm: "Remover #{member.user.first_name} da viagem?"
+                                          } do %>
+                          <i class="fa-solid fa-trash-can my-0 py-0"></i>
+                      <% end %>
+                    </div>
+                  </li>
+                <% end %>
+              </ul>
+          <%# O que é exibido se não tiver membros %>
+          <% else %>
+            <p>Não há membros convidados.</p>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Convidar", class: "btn btn-primary" %>
+          <button type="button" class="btn btn-flat" data-bs-dismiss="modal">Voltar</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
