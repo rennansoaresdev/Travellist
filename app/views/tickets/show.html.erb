@@ -1,62 +1,36 @@
-<div class="box">
-  <ul class="left">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
+<div class="container-sm">
+	<div class="ticket airline">
+		<div class="top">
+			<div class="big">
+				<p class="from"><%= @ticket.origin.first(3).upcase %><i class="fas fa-arrow-down"></i></p>
+				<p class="to"><%= @ticket.destination.first(3).upcase %></p>
+			</div>
 
-  <ul class="right">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-  <div class="ticket">
+			<div class="top--side">
+				<i class="fas fa-plane"></i>
+				<p><%= @ticket.origin.first(15).upcase %></p>
+				<p><%= @ticket.destination.first(15).upcase %></p>
+			</div>
+		</div>
 
-    <span class="boarding">Your Travellist boarding pass</span>
-    <div class="content">
-      <span class="jfk"><%= @ticket.origin.first(3).upcase %> </span>
-      <span class="plane"><?xml version="1.0" ?><svg clip-rule="evenodd" fill-rule="evenodd" height="60" width="60" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g stroke="#222"><line fill="none" stroke-linecap="round" stroke-width="30" x1="300" x2="55" y1="390" y2="390"/><path d="M98 325c-9 10 10 16 25 6l311-156c24-17 35-25 42-50 2-15-46-11-78-7-15 1-34 10-42 16l-56 35 1-1-169-31c-14-3-24-5-37-1-10 5-18 10-27 18l122 72c4 3 5 7 1 9l-44 27-75-15c-10-2-18-4-28 0-8 4-14 9-20 15l74 63z" fill="#222" stroke-linejoin="round" stroke-width="10"/></g></svg></span>
-      <span class="sfo"><%= @ticket.destination.first(3).upcase %></span>
-
-      <span class="jfk jfkslip"><%= @ticket.origin.first(3).upcase %></span>
-      <span class="plane planeslip"><?xml version="1.0" ?><svg clip-rule="evenodd" fill-rule="evenodd" height="50" width="50" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g stroke="#222"><line fill="none" stroke-linecap="round" stroke-width="30" x1="300" x2="55" y1="390" y2="390"/><path d="M98 325c-9 10 10 16 25 6l311-156c24-17 35-25 42-50 2-15-46-11-78-7-15 1-34 10-42 16l-56 35 1-1-169-31c-14-3-24-5-37-1-10 5-18 10-27 18l122 72c4 3 5 7 1 9l-44 27-75-15c-10-2-18-4-28 0-8 4-14 9-20 15l74 63z" fill="#222" stroke-linejoin="round" stroke-width="10"/></g></svg></span>
-      <span class="sfo sfoslip"><%= @ticket.destination.first(3).upcase %></span>
-      <div class="sub-content">
-        <span class="watermark">Travellist</span>
-      <span class="name">PASSENGER NAME<br><span><%= @ticket.user.first_name %></span></span>
-        <span class="flight">FLIGHT N&deg;<br><span>X3-65C3</span></span>
-        <span class="gate">GATE<br><span></strong><%= @ticket.gate ? @ticket.gate.first(3).upcase : '' %></span></span>
-        <span class="seat">SEAT<br><span><%= @ticket.seat ? @ticket.seat.first(3).upcase : '' %></span></span>
-        <span class="boardingtime">BOARDING TIME<br><span><%= @ticket.start_time.strftime("%d of %B, %Y") %></span></span>
-
-         <span class="flight flightslip">FLIGHT N&deg;<br><span>X3-65C3</span></span>
-          <span class="seat seatslip">SEAT<br><span><%= @ticket.seat ? @ticket.seat.first(3).upcase : '' %></span></span>
-         <span class="name nameslip">PASSENGER NAME<br><span><%= @ticket.user.first_name %></span></span>
-      </div>
-    </div>
-    <div class="barcode"></div>
-    <div class="barcode slip"></div>
-  </div>
+		<div class="bottom">
+			<div class="column">
+				<div class="roww row-1">
+					<p><span>Voo</span>-</p>
+					<p class="row--right"><span>Grupo</span>-</p>
+				</div>
+				<div class="roww row-2">
+					<p><span>Embarque</span>-</p>
+					<p class="row--center"><span>Partida</span><%= @ticket.start_time.strftime("%H:%M")%></p>
+					<p class="row--right"><span>Chegada</span><%= @ticket.end_time.strftime("%H:%M") %></p>
+				</div>
+				<div class="roww row-3">
+					<p><span>Passageiro</span><%= @ticket.user.first_name %></p>
+					<p class="row--center"><span>Assento</span><%= @ticket.seat ? @ticket.seat.first(3).upcase : '' %></p>
+					<p class="row--right"><span>Portão</span><%= @ticket.gate ? @ticket.gate.first(3).upcase : '' %></p>
+				</div>
+			</div>
+			<div class="bar--code"></div>
+		</div>
+	</div>
 </div>
