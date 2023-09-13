@@ -15,24 +15,31 @@
   }
 </style>
 <div class="container">
-   <div class="banner-acommodation" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)); position: relative;  ">
+  <div class="banner-acommodation" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)); position: relative;  ">
       <%= image_tag('show_accommodation.jpg', alt: 'Banner de acomodação', class: 'img-fluid', style: 'width: 100%; height: 100%;' ) %>
     <div class="custom-card">
       <h1 class="text-center" style=" margin-rigth: 20px; font-size: 30px; color: #000000;">Minhas Acomodações</h1> <br>
       <h4 class="">Viagem para: <%= link_to (@trip.name.titleize), trip_path(@trip) %></h4></div>
       </div>
-       <div class="row">
+    <div class="row">
     <% @accommodations.each do |accommodation| %>
       <div class="col-md-12 mb-8">
         <div class="card w-80 mb-4 hoverable hover-card" style="border-radius: 15px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); background-color: 235, 235, 235;">
           <div class="card-body w-100 pl-6 overflow-auto" style="border-radius: 15px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); background-color: #ffffff;">
+            <div class="button-container" style="display: flex; justify-content: space-between;">
+            <p><%= link_to "", edit_accommodation_path(accommodation), class: "fa-regular fa-pen-to-square" %></p>
+            <p><%= link_to "", trip_accommodation_path(@trip, accommodation), data: { turbo_method: :delete, turbo_confirm: "Deseja deletar #{accommodation.name.titleize} ?"}, class: "fa-solid fa-trash" %></p>
+          </div>
+              <p><strong>Nome:</strong> <%= accommodation.name.titleize %>
+            <div class="details-toggle">
+            <div class="image-container">
+              <% if accommodation.photo.attached? %>
+                <%= cl_image_tag(accommodation.photo.key, { alt: accommodation.name.titleize, class: 'img-fluid', style: 'width: 100%; height: 100%;', cloud_name: 'dmduttlvv' }) %>
+              <% else %>
+                <%= image_tag('trip-banner-placeholder.jpg', alt: 'Banner de acomodação', class: 'img-fluid', style: 'width: 100%; height: 50%; padding-bottom: ;') %>
+              <% end %>
             <div style="display: flex; justify-content: space-between; ">
-              <p class="card-text accommodation-name"><strong>Acomodação: </strong><%= accommodation.name.titleize %></p>
-              <p><%= link_to "", edit_accommodation_path(accommodation), class: "fa-regular fa-pen-to-square" %></p>
-              <p><%= link_to "", trip_accommodation_path(@trip, accommodation), data: { turbo_method: :delete, turbo_confirm: "Deseja deletar #{accommodation.name.titleize} ?"}, class: "fa-solid fa-trash" %></p>
             </div>
-
-            <div class="details-toggle background-image" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), <%= accommodation.photo.present? ? "url('#{cl_image_path accommodation.photo.key}')" : "asset-url('trip-banner-placeholder.jpg')" %>;">
               <p class="toggle-trigger" style="margin-rigth: 20px; "><strong>+</strong></p>
               <div class="toggle-content">
                 <div class="container">
@@ -48,6 +55,7 @@
                       <p><strong>Check-in:</strong> <%= accommodation.checkin_time.strftime('%d/%m/%Y %H:%M') %></p>
                       <p><strong>Check-out:</strong> <%= accommodation.checkout_time.strftime('%d/%m/%Y %H:%M') %></p>
                     </div>
+                  </div>
                   </div>
                 </div>
               </div>
