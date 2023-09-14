@@ -3,10 +3,10 @@ class TripsController < ApplicationController
 
   def index
     # Necessário adicionar viagens criadas por OUTRAS pessoas, mas que o current_user pertença ao grupo
+    # @trips = Trip.where(owner: current_user)
     @trips = Trip.left_outer_joins(:members)
                  .where('owner_id = :user OR members.user_id = :user', user: current_user)
                  .distinct
-    @trip = @trips.first
   end
 
   def show
