@@ -18,74 +18,126 @@
 
 <%# ===== Banner com botão ===== %>
 <div class="banner">
-  <button class="button-lg">
+  <button class="button-lg-home">
     <%= link_to "Comece por aqui!", new_user_session_path%>
   </button>
 </div>
 
-<%# ===== Texto de apresentação ===== %>
-<div class="container-sm">
-  <div class="text-decoration">
-    <p>
-      <h4>Tudo o que você precisa para viajar tranquilo!</h4>
-
-      O Travellist é a solução definitiva para o planejamento de viagens sem complicações.
-
-      Oferecemos uma plataforma completa para te ajudar na organização de suas viagens.
-
-      Encontre passagens, gerencie datas e horarios, organize sua mala e compartilhe com seus amigos.
-
-      Recomendações personalizadas para que você possa explorar o mundo com confiança e tranquilidade.
-
-      O Travellist é seu parceiro de viagem confiável, proporcionando uma experiência que permite desfrutar ao máximo de cada jornada. Viajar nunca foi tão fácil!
-    </p>
+<div class="container home-content">
+<%# ===== Recursos da plataforma ===== %>
+  <h2>Organize sua viagem em apenas um lugar</h2>
+  <div class="card-center">
+    <%= image_tag 'accommodation-home-card.png',
+                  alt: 'Accommodation and tikets in the same place',
+                  class: 'img-circle img-border card-center-img' %>
+    <div class="card-center-text">
+      <h5>Passagens e acomodações</h5>
+      <p>Salve pesquisas de passagens que interessem a você e seus amigos. Centralize a pesquisa de hotéis, casas e pousadas de diversas plataformas, como Booking.com e Airbnb, no mesmo lugar. 📦</p>
+    </div>
+  </div>
+  <div class="card-center">
+    <%= image_tag 'friends-home-card.png',
+                  alt: 'Accommodation and tikets in the same place',
+                  class: 'img-circle img-border card-center-img' %>
+    <div class="card-center-text">
+      <h5>Compartilhe com amigos</h5>
+      <p>Nada melhor do que compartilhar bons momentos! Crie viagens e chame seus amigos para planejar em conjunto. 📅</p>
+    </div>
+  </div>
+  <div class="card-center">
+    <%= image_tag 'tasks-home-card.png',
+                  alt: 'Accommodation and tikets in the same place',
+                  class: 'img-circle img-border card-center-img' %>
+    <div class="card-center-text">
+      <h5>Planeje os próximos passos</h5>
+      <p>Crie tarefas para organizar tudo o que for necessário e não deixar nada pra trás. Nunca mais esqueça nada e viaje despreocupado! 🗺️</p>
+    </div>
   </div>
 
+  <%# Comparativo com / sem %>
+  <h2>Planejamento centralizado e gratuito</h2>
+  <div class="row gap-3">
+    <div class="col-12 col-md-6 card-without-tl">
+      <div class="card-without-tl-header">
+        <h5>Sem <span class="tl-name tl-black">Travel<span><span class="tl-name tl-grey">list</span></h5>
+        <ul>
+          <li>Organização <span class="bold-red">demorada</span></li>
+          <li><span class="bold-red">Falta</span> de visibilidade</li>
+          <li>Comunicação <span class="bold-red">difícil</span> e <span class="bold-red">lenta</span></li>
+          <li>Informações <span class="bold-red">espalhadas</span> em vários locais</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 card-with-tl">
+      <div class="card-with-tl-header">
+        <h5>Com <span class="tl-name tl-black">Travel<span><span class="tl-name tl-grey">list</span></h5>
+        <ul>
+          <li>Organização <span class="bold-green">inteligente</span></li>
+          <li>Visualização <span class="bold-green">centralizada</span></li>
+          <li><span class="bold-green">Facilita</span> decisões e <span class="bold-green">melhora</span> a comunicação</li>
+          <li>Informações de diversas plataformas em um <span class="bold-green">mesmo local</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <%# Call-to-action final %>
+  <h2>Garanta seu embarque antecipado</h2>
+    <div class="col-12 col-md-6 card-without-tl">
+      <div class="card-without-tl-header">
+        <h5> <span class="tl-name tl-black">Com a TRAVELLIST viajar nunca foi tão facil! </h5>
+      </div>
+    </div>
+
+        <button class="button-lg-home mt-5">
+          <%= link_to "Comece por aqui!", new_user_session_path%>
+        </button>
+</div>
+
 <%# ===== Menu inferior estilo "mobile" ===== %>
-  <nav class="mobile-nav">
-
-      <% if current_user && current_user.photo.present? %>
-        <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <div class="avatar">
-            <%= cl_image_tag current_user.photo.key, width: 30, height: 30 %>
-          </div>
-        <% end %>
-        <% elsif current_user.nil? %>
-          <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-            <div class="avatar">
-              <i class="far fa-user-circle"></i>
-            </div>
-          <% end %>
-        <% else %>
+<nav class="mobile-nav">
+    <% if current_user && current_user.photo.present? %>
+      <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+        <div class="avatar">
+          <%= cl_image_tag current_user.photo.key, width: 30, height: 30 %>
+        </div>
+      <% end %>
+      <% elsif current_user.nil? %>
         <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
           <div class="avatar">
-            <%= image_tag 'user-placeholder.png', width: 30, height: 30 %>
+            <i class="far fa-user-circle"></i>
           </div>
         <% end %>
-      <% end %>
-
-      <% if current_user %>
-        <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <i class="fas fa-align-center"></i>
-        <% end %>
       <% else %>
-        <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <i class="fas fa-align-center"></i>
-        <% end %>
+      <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+        <div class="avatar">
+          <%= image_tag 'user-placeholder.png', width: 30, height: 30 %>
+        </div>
       <% end %>
+    <% end %>
 
-      <% if current_user %>
-        <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <i class="far fa-comment-dots"></i>
-        <% end %>
-      <% else %>
-        <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-          <i class="far fa-comment-dots"></i>
-        <% end %>
+    <% if current_user %>
+      <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+        <i class="fas fa-align-center"></i>
       <% end %>
-
-      <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "bloc-icon", style: 'text-decoration: none;' do %>
-       <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    <% else %>
+      <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+        <i class="fas fa-align-center"></i>
       <% end %>
+    <% end %>
 
-  </nav>
+    <% if current_user %>
+      <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+        <i class="far fa-comment-dots"></i>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+        <i class="far fa-comment-dots"></i>
+      <% end %>
+    <% end %>
+
+    <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "bloc-icon", style: 'text-decoration: none;' do %>
+      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    <% end %>
+</nav>
