@@ -7,6 +7,12 @@ a {
   border-radius: 50%;
 }
 
+.btn-grey-round {
+  color: #7a7a7a;
+  border: 2px solid #7a7a7a;
+  border-radius: 50%;
+}
+
 .btn-back {
   font-size: 24px;
   padding: 12px 14px;
@@ -84,17 +90,19 @@ a {
   }
 
   .trip-section-btn-add {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    margin: 0;
-    padding: 6px 12px;
-    background-color: #94B49F;
-    border: 1px solid #789281;
-    display: inline-block;
-    border-radius: 50%;
+    // text-decoration: none;
+    // color: black;
+    // font-weight: bold;
+    // margin: 0;
+    // padding: 6px 12px;
+    // background-color: #94B49F;
+    // border: 1px solid #789281;
+    // display: inline-block;
+    // border-radius: 50%;
+    background: transparent;
+    border: none;
     position: absolute;
-    top: 20px;
+    top: 28px;
     left: 85%;
   }
 
@@ -119,8 +127,10 @@ a {
   }
 }
 
-.trip-tickets-card-group {
+.trip-card-group {
   list-style: none;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 .trip-ticket-card {
@@ -170,7 +180,7 @@ a {
   color: #dd4725;
   position: absolute;
   top: 70%;
-  left: 70%;
+  left: 60%;
 }
 .ticket-card-user-info {
   position: absolute;
@@ -191,4 +201,13 @@ a {
   position: absolute;
   top: 5%;
   left: 65%;
+}
+
+.trip-accommodation-card {
+  position: relative;
+}
+
+.trip-accommodation-details {
+  position: relative;
+  padding: 12px 0px;
 }
