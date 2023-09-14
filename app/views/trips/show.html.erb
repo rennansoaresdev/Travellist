@@ -48,11 +48,11 @@
       <div class="trip-section">
         <h2><%= link_to 'Passagens', trip_tickets_path(@trip), class: 'text-decoration-none' %></h2>
         <%= link_to new_trip_ticket_path(@trip), class: 'trip-section-btn-add' do %>
-          <i class="fa-solid fa-plus"></i>
+          <i class="fa-solid fa-circle-plus fa-2xl btn-plus"></i>
         <% end %>
         <% if @trip.tickets.present? %>
-          <ul class="list-unstyled">
-            <% @trip.tickets.order(:updated_at).take(2).each do |ticket| %>
+          <ul class="trip-card-group">
+            <% @trip.tickets.order(:updated_at).take(4).each do |ticket| %>
               <li class="trip-ticket-card">
                 <div class="ticket-card-location">
                   <div class="ticket-card-location-info">
@@ -107,39 +107,52 @@
     <div class="col-md-12 mb-8">
       <%# Accommodations %>
       <div class="trip-section">
+        <h2><%= link_to 'Acomodações', trip_accommodations_path(@trip), class: 'text-black text-decoration-none' %></h2>
+        <%= link_to new_trip_accommodation_path(@trip), class: 'trip-section-btn-add' do %>
+          <i class="fa-solid fa-circle-plus fa-2xl btn-plus"></i>
+        <% end %>
         <% if @trip.accommodations.present? %>
-        <h2> Acomodações</h2>
-          <div class="list-group overflow-auto" style="max-height: 300px;">
-            <% @trip.accommodations.order(:updated_at).take(2).each do |accommodation| %>
-            <div class="banner-accommodation" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7))">
-              <% if accommodation.photo.attached? %>
-              <%= cl_image_tag(accommodation.photo.key, { alt: accommodation.name.titleize, class: 'img-fluid', style: 'width: 100%; height: 100%;', cloud_name: 'dmduttlvv' }) %>
-              <% else %>
-            <%= image_tag('accommodation.jpg', alt: 'Banner de acomodação', class: 'img-fluid') %>
-          <% end %>
-          </div>
-             <%= link_to accommodation_path, class: 'text-dark text-decoration-none' do %> <br>
-              <div class="row">
-                <div class="col-6 col-md-6">
-                 <strong><h5><%= accommodation.name.titleize %></h5></strong>
-                    <p>Tipo: <%= accommodation.category %></p>
-                    <p>Espaço para <%= accommodation.capacity %> pessoas</p>
-                  </div>
-                  <div class="col-6 col-md-6">
-                    <% checkin_time = accommodation.checkin_time %>
-                    <% checkout_time = accommodation.checkout_time %>
-                    <% if checkin_time.present? && checkout_time.present? %>
-                      <p>Estadia: <%= (checkout_time.to_date - checkin_time.to_date).to_i %> dias</p>
-                    <% else %>
-                      <p>Datas de check-in e check-out não estão definidas.</p>
-                    <% end %>
-                    <p><%= link_to 'Visitar site', accommodation.url, target: '_blank', class: 'btn btn-primary rounded-5' %></p>
-                  </div>
+          <ul class="trip-card-group">
+            <% @trip.accommodations.order(:updated_at).take(4).each do |accommodation| %>
+              <li class="trip-accommodation-card">
+                <div class="banner-accommodation" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7))">
+                  <% if accommodation.photo.attached? %>
+                    <%= cl_image_tag(accommodation.photo.key, { alt: accommodation.name.titleize, class: 'img-fluid', style: 'width: 100%; height: 100%;', cloud_name: 'dmduttlvv' }) %>
+                  <% else %>
+                    <%= image_tag 'accommodation.jpeg', alt: 'Banner de acomodação', class: 'img-fluid' %>
+                  <% end %>
                 </div>
-              <% end %>
-              <hr>
+                <div class="ticket-card-options" style="font-size: 12px;">
+                  <%= link_to edit_accommodation_path(accommodation), class: 'trip-card-button' do %>
+                    <i class="fa-solid fa-pen-to-square"></i> Editar
+                  <% end %>
+                  <%= link_to accommodation_path(accommodation), class: 'trip-card-button', data: { turbo_method: :delete, turbo_confirm: 'Deseja deletar a passagem?' } do %>
+                    <i class="fa-solid fa-trash-can"></i>
+                  <% end %>
+                </div>
+                <%= link_to accommodation_path(accommodation), class: 'text-dark text-decoration-none' do %><br>
+                  <div class="row trip-accommodation-details">
+                    <div class="col-6 col-md-6">
+                      <h5 class="fw-bold"><%= accommodation.name.titleize %></h5>
+                      <p><%= accommodation.category %></p>
+                      <p>Espaço para <%= accommodation.capacity %> pessoas</p>
+                      <% checkin_time = accommodation.checkin_time %>
+                      <% checkout_time = accommodation.checkout_time %>
+                      <% if checkin_time.present? && checkout_time.present? %>
+                        <p><%= (checkout_time.to_date - checkin_time.to_date).to_i %> dias</p>
+                      <% else %>
+                        <p>Data não informada</p>
+                      <% end %>
+                      <p><%= link_to 'Visitar site', accommodation.url, target: '_blank', class: 'btn btn-primary rounded-5' %></p>
+                    </div>
+                    <div class="col-6 col-md-6">
+                    </div>
+                  </div>
+                <hr>
+                <% end %>
+              </li>
             <% end %>
-          </div>
+          </ul>
         <% else %>
         <div class="trip-section-empty">
             <p>Não há acomodações adicionadas à sua viagem.</p>
@@ -152,23 +165,21 @@
     <div class="col-12 col-md-5">
       <div class="trip-section">
         <h2>Tarefas</h2>
-                <div class="position-absolute top-0 end-0">
-                  <button id="open-task-form-button" class="btn toggle-button rounded-circle shadow btn-success">
-                    <i class="fas fa-plus"></i>
-                    <i class="fa-solid fa-minus" style="display: none;"></i>
-                  </button>
-                </div>
-          <div id="add-task-form" style="display: none;">
-            <%= simple_form_for [@trip, @task], remote: true do |f|%>
-              <%= f.input :description, as: :string,
-                          label: 'Descrição da tarefa:',
-                          class: 'form-control' %>
-              <div class='input-group-append'>
-                <%= f.submit 'Criar', class: 'btn btn-primary rounded-5 shadow' do %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+        <button id="open-task-form-button" class="trip-section-btn-add">
+          <i class="fa-solid fa-circle-plus fa-2xl btn-plus"></i>
+          <i class="fa-solid fa-minus" style="display: none;"></i>
+        </button>
+        <div id="add-task-form" style="display: none;">
+          <%= simple_form_for [@trip, @task], remote: true do |f|%>
+            <%= f.input :description, as: :string,
+                        label: 'Descrição da tarefa:',
+                        class: 'form-control' %>
+            <div class='input-group-append'>
+              <%= f.submit 'Criar', class: 'btn btn-primary rounded-5 shadow' do %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
         <% if @trip.tasks.present? %>
           <ul class="list-unstyled my-3 overflow-auto">
             <% @trip.tasks.order(:done, :description).each do |task| %>

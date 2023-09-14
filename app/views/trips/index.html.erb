@@ -37,7 +37,11 @@
         <p>Início: <%= trip.start_date %></p>
         <p>Fim: <%= trip.end_date %></p>
         <div class="user">
-          <%= image_tag current_user.photo, class: 'avatar' %>
+          <% if current_user.photo.present? %>
+            <%= image_tag current_user.photo, class: 'avatar' %>
+          <% else %>
+            <%= image_tag "user-placeholder.png", class: 'avatar' %>
+          <% end %>
           <div class="user-info">
             <h5><%= trip.owner.first_name %></h5>
             <small>Criado em: <%= trip.updated_at.strftime('%d/%m/%Y') %></small>
