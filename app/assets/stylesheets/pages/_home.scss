@@ -15,6 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 24px;
 
   h2 {
     text-align: center;
@@ -71,4 +72,75 @@
   position: absolute;
   top: -48px;
   background-color: white;
+}
+
+.tl-name {
+  font-family: "Sniglet", "Helvetica", "sans-serif";
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0;
+  margin: 0;
+}
+
+.tl-black {
+  color: black;
+}
+
+.tl-grey {
+  color: rgb(132, 132, 132);
+}
+
+.card-without-tl {
+  width: 100%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.9)), asset-url('without-travellist.png');
+  background-position: start;
+  background-size: auto;
+  border: 2px solid red;
+  border-radius: 5px;
+  padding: 16px 8px;
+  h5 {
+    text-align: center;
+    font-weight: bold;
+  }
+  ul {
+    margin: 32px 0px;
+    list-style: none;
+    //list-style-image: asset-url('bullet-negative.png');
+  }
+  li {
+    margin-bottom: 8px;
+    //background-size: 20px;
+  }
+}
+
+.card-with-tl {
+  width: 100%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.9)), asset-url('with-travellist.png');
+  background-position-y: top;
+  background-position-x: 60%;
+  background-size: auto;
+  border: 2px solid #94B49F;
+  border-radius: 5px;
+  padding: 16px 8px;
+  h5 {
+    text-align: center;
+    font-weight: bold;
+  }
+  ul {
+    margin: 32px 0px;
+    list-style: none;
+  }
+  li {
+    margin-bottom: 8px;
+  }
+}
+
+.bold-red {
+  font-weight: bold;
+  color: rgb(255, 87, 87);
+}
+
+.bold-green {
+  font-weight: bold;
+  color: darkgreen;
 }
