@@ -4,3 +4,49 @@
   right: 16px;
   z-index: 1000;
 }
+
+
+//accommodation
+
+
+
+/* Estilos CSS para a nota */
+.note {
+  background-image: url('caderno-linhas.jpg');
+  background-repeat: repeat;
+  background-color: #ebebeb; /* Cor do papel */
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid #ebebeb; /* Borda cinza */
+  position: relative;
+  border-radius: 15px;
+}
+
+
+.note-corner {
+  width: 0;
+  height: 0;
+  border-left: 0px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid #ffffff; /* Mesma cor do papel */
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.card-body {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Estilos CSS para links na nota */
+.card-body a {
+  color: #007bff; /* Cor do link */
+  text-decoration: underline;
+}
+
+/* Estilos CSS para links na nota quando hover */
+.card-body a:hover {
+  color: #0056b3; /* Cor do link ao passar o mouse */
+}
+

@@ -1,9 +1,9 @@
 class Trip < ApplicationRecord
-  has_many :members
-  has_many :tasks
-  has_many :users, through: :groups
-  has_many :accommodations
-  has_many :tickets
+  has_many :members, dependent: :destroy
+  has_many :tasks, dependent: :destroy
+  has_many :users, through: :members, dependent: :destroy
+  has_many :accommodations, dependent: :destroy
+  has_many :tickets, dependent: :destroy
   belongs_to :owner, class_name: 'User'
 
   # Declares that this class will have a photo attached to it

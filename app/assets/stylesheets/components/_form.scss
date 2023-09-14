@@ -117,8 +117,16 @@
 
 .form-actions {
   display: flex;
+  justify-content: center;
   gap: 5px;
   margin-left: 10px;
+}
+.form-actions-registration {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  padding-bottom: 30px;
+
 }
 .form-actions-buttons {
   display: flex;
@@ -139,6 +147,8 @@
 }
 .modal-border-radius {
   border-radius: 0 0 20px 20px;
+  margin-bottom: 20px;
+  padding-top: 30px;
 }
 .modal-border-20 {
   border-radius: 20px;
