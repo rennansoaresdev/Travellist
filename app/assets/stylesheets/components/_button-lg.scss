@@ -13,6 +13,24 @@
   width: 200px;
   height: 48px;
 }
+.button-lg-home {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  background: var(--ROSE, #DF7861);
+  box-shadow: -4px 4px 2px 0px #ECB390;
+  color: var(--ICE, #FCF8E8);
+  font-family: 'Sniglet', cursive;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  width: 200px;
+  height: 48px;
+  a {
+    color: #FCF8E8;
+  }
+}
 button:active {
   background-color: #ECB390;
 }
