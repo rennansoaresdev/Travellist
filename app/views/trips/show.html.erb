@@ -155,6 +155,12 @@
     <div class="col-12 col-md-5">
       <div class="trip-section">
         <h2>Tarefas</h2>
+                <div class="position-absolute top-0 end-0">
+                  <button id="open-task-form-button" class="btn toggle-button rounded-circle shadow btn-success">
+                    <i class="fas fa-plus"></i>
+                    <i class="fa-solid fa-minus" style="display: none;"></i>
+                  </button>
+                </div>
           <div id="add-task-form" style="display: none;">
             <%= simple_form_for [@trip, @task], remote: true do |f|%>
               <%= f.input :description, as: :string,
@@ -189,12 +195,6 @@
                     <i class="fa-solid fa-trash-can"></i>
                   <% end %>
                 </div>
-                <div class="position-absolute top-0 end-0">
-                  <button id="open-task-form-button" class="btn toggle-button rounded-circle shadow btn-success">
-                    <i class="fas fa-plus"></i>
-                    <i class="fa-solid fa-minus" style="display: none;"></i>
-                  </button>
-              </div>
               </li>
             <% end %>
           </ul>
@@ -208,7 +208,7 @@
 </div>
 
 <%= render "members/modal", trip: @trip, member: @member %>
-<script>
+ <script>
   // Use JavaScript para mostrar/ocultar o formulário de criação de tarefa
   document.getElementById('open-task-form-button').addEventListener('click', function() {
     var formDiv = document.getElementById('add-task-form');
@@ -231,5 +231,6 @@
       button.classList.add('btn-success');
       button.classList.remove('btn-primary');
     }
+    console.log('teste');
   });
 </script>

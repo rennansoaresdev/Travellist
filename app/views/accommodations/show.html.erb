@@ -9,16 +9,15 @@
   </div>
   <div class="container mt-4" style="border-radius: 15px; background-color: #EBEBEB;">
     <div class="card-body my-2">
-      <p><strong>Nome:</strong> <%= @accommodation.name.titleize %></p>
-      <p><strong>Endereço:</strong> <%= @accommodation.address %></p>
-      <p><strong>Preço:</strong> R$ <%= number_to_currency(@accommodation.price, unit: "", separator: ",", delimiter: ".") %></p>
-      <p><strong>Capacidade:</strong> <%= @accommodation.capacity %></p>
-      <p><strong>Tipo:</strong> <%= @accommodation.category %></p>
-      <p><strong>Check-in:</strong> <%= @accommodation.checkin_time.strftime('%d/%m/%Y %H:%M:%S') %></p>
-      <p><strong>Check-out:</strong> <%= @accommodation.checkout_time.strftime('%d/%m/%Y %H:%M:%S') %></p>
-      <p><strong>URL:</strong> <a href="<%= @accommodation.url %>" target="_blank"><%= @accommodation.url %></a></p>
+      <p>
+        Sua estadia em <strong><%= @accommodation.name.titleize %></strong>, ( <%= @accommodation.category %> ),
+        localizada em <%= @accommodation.address %>, com capacidade para <%= @accommodation.capacity %> <%= @accommodation.capacity == 1 ? 'pessoa' : 'pessoas' %>,
+        tem inicio em <%= @accommodation.checkin_time.strftime('%d/%m/%Y às %H:%M') %>.
+        Com check-out previsto para <%= @accommodation.checkout_time.strftime('%d/%m/%Y às %H:%M') %>.
+        O Valor total da reserva é </strong> R$ <%= number_to_currency(@accommodation.price, unit: "", separator: ",", delimiter: ".") %></p>.
+        Você pode encontrar mais informações <a href="<%= @accommodation.url %>" target="_blank">aqui</a>.
+      </p>
     </div>
-  </div>
   <br>
   <%= link_to "Editar acomodação", edit_accommodation_path(@accommodation), class: "btn btn-primary" %>
   <%= link_to "Voltar para Viagem", trip_path(@accommodation.trip), class: 'btn btn-primary' %>

@@ -8,6 +8,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to trip_path(@trip), notice: "Tarefa adicionada a #{@trip.name}"
     else
+      @member = Member.new
       render "trips/show", status: :unprocessable_entity
     end
   end
