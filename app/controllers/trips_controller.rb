@@ -6,7 +6,6 @@ class TripsController < ApplicationController
     @trips = Trip.left_outer_joins(:members)
                  .where('owner_id = :user OR members.user_id = :user', user: current_user)
                  .distinct
-    @trip = @trips.first
   end
 
   def show
