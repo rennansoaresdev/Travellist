@@ -31,3 +31,40 @@ button:active {
   width: 200px;
   height: 48px;
 }
+
+/*  */
+.accommodation-card-button{
+  text-decoration: none;
+  color: white;
+  font-style: bold;
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #DF7861;
+  border-radius: 12px;
+}
+
+.return.link {
+  text-decoration: none;
+  color: white;
+  font-style: bold;
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #DF7861;
+  border-radius: 12px;;
+}
+
+.position-absolute {
+  color: #94B49F black;
+  margin: 10px;
+}
+
+#open-task-form-button {
+  background-color: #94B49F; /* Define a cor de fundo desejada */
+  border: none; /* Remova a borda se desejar */
+  color: black;
+}
+
+/* Estilizando o botão quando ele está ativo (clicado) */
+#open-task-form-button.active {
+  background-color: #94B49F; /* Defina a mesma cor de fundo para o estado ativo */
+}
