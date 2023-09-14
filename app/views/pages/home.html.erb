@@ -18,7 +18,7 @@
 
 <%# ===== Banner com botão ===== %>
 <div class="banner">
-  <button class="button-lg">
+  <button class="button-lg-home">
     <%= link_to "Comece por aqui!", new_user_session_path%>
   </button>
 </div>
@@ -84,7 +84,15 @@
 
   <%# Call-to-action final %>
   <h2>Garanta seu embarque antecipado</h2>
+    <div class="col-12 col-md-6 card-without-tl">
+      <div class="card-without-tl-header">
+        <h5> <span class="tl-name tl-black">Com a TRAVELLIST viajar nunca foi tão facil! </h5>
+      </div>
+    </div>
 
+        <button class="button-lg-home mt-5">
+          <%= link_to "Comece por aqui!", new_user_session_path%>
+        </button>
 </div>
 
 <%# ===== Menu inferior estilo "mobile" ===== %>
