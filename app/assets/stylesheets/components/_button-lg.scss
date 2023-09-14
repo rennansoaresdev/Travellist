@@ -31,3 +31,22 @@ button:active {
   width: 200px;
   height: 48px;
 }
+.header-back-title-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.btn-back-action {
+  font-size: 35px;
+  color: lightgrey;
+}
+.btn-plus {
+  font-size: 35px;
+  color: #94B49F;
+}
+.trip-edit-delete {
+  display: flex;
+  justify-content: space-between;
+}

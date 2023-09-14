@@ -1,29 +1,53 @@
-<div class="container-sm">
-  <h1 class="text-title">Minhas viagens</h1>
-  <p><%= "#{@trips.count} viagens planejadas" %></p>
- <div class="row m-1">
-  <ul class='d-flex gap-3'>
-    <% @trips.order(:updated_at).each do |trip| %>
-      <li class='card p-3 border-0 shadow rounded'>
-        <p>Nome: <%= trip.name %></p>
+<div class="header-back-title-action mt-4 mb-4">
+  <%= link_to root_path do %>
+    <i class="fa-solid fa-arrow-left fa-xl" style="color: #7a7a7a;"></i>
+  <% end %>
+
+    <h1 class="text-center">Minhas viagens</h1>
+
+  <%= link_to new_trip_path do %>
+    <i class="fa-solid fa-circle-plus fa-2xl btn-plus"></i>
+  <% end %>
+</div>
+
+<div class="container-trip">
+  <% @trips.order(:updated_at).each do |trip| %>
+      <div class="card-trip">
+        <div class="card-header" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.2)), <%= trip.photo.present? ? "url('#{cl_image_path trip.photo.key}')" : "asset-url('trip-banner-placeholder.jpg')" %>;">
+          <h2 class="text-white"><%= trip.destination %></h2>
+        </div>
+
+        <div class="card-body">
+          <div class="trip-edit-delete">
+            <span class="tag tag-purple">Viagem</span>
+            <div>
+              <%= link_to edit_trip_path(trip) do %>
+                <i class="fa-regular fa-pen-to-square fa-lg" style="color: #8c8c8c;"></i>
+              <% end %>
+              <%= link_to trip_path(trip),
+                          data: { turbo_method: :delete,
+                                  turbo_confirm: "Deseja deletar #{trip.name}?"} do %>
+                <i class="fa-solid fa-trash-can fa-xl ms-2" style="color: #DF7861;"></i>
+              <% end %>
+            </div>
+          </div>
+
+
+        <h4><%= trip.name %></h4>
         <p>Início: <%= trip.start_date %></p>
         <p>Fim: <%= trip.end_date %></p>
-        <p>Destino: <%= trip.destination %></p>
-        <%# Verifica se o budget foi informado e, se não foi, exibe 'não informado' %>
-        <p>Budget por membro: <%= trip.budget_per_user || 'não informado' %></p>
-        <p>Criado por: <%= trip.owner.first_name %></p>
-        <p>Atualizado em: <%= trip.updated_at %></p>
-        <div class="row gy-1 gx-1 justify-content-between">
-          <%= link_to 'Ver detalhes', trip_path(trip), class: 'btn btn-primary' %>
-          <%= link_to 'Editar', edit_trip_path(trip), class: 'btn btn-primary col-6' %>
-          <%= link_to 'Deletar', trip_path(trip),
-                      class: 'btn btn-danger col-6',
-                      data: { turbo_method: :delete,
-                              turbo_confirm: "Deseja deletar #{trip.name}?"} %>
+        <div class="user">
+          <%= image_tag current_user.photo, class: 'avatar' %>
+          <div class="user-info">
+            <h5><%= trip.owner.first_name %></h5>
+            <small>Criado em: <%= trip.updated_at.strftime('%d/%m/%Y') %></small>
+          </div>
         </div>
-      </li>
-    <% end %>
-  </ul>
-  <%= link_to 'Criar viagem', new_trip_path, class: 'btn btn-primary' %>
-</div>
+
+        <div class="form-actions-buttons">
+          <%= link_to 'Detalhes', trip_path(trip), class: 'button-lg w-100 text-center' %>
+        </div>
+        </div>
+      </div>
+  <% end %>
 </div>

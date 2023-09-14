@@ -26,12 +26,12 @@ $grey: #6c6c6c;
 
 .airline {
 	display: block;
-  height: 575px;
+  height: 558px;
   width: 270px;
 	box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
 	border-radius: 25px;
 	z-index: 3;
-  background-color: #ECB390;
+  background-color: gray;
 	.top {
 		height: 240px;
 		background: $topbg;
