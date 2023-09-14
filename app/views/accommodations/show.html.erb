@@ -1,24 +1,29 @@
 
-
-<div class="card mt-4" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), width: 100%; border-radius: 15px; background-color: #EBEBEB ">
-
-   <div class="banner-accommodation" style="position: relative; ">
-  <%= image_tag('accommodation.jpg', alt: 'Seu Banner', class: 'img-fluid', style: 'width: 100%; height: 100%;' ) %>
-  <h4 class="display-7" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ffffff;">Detalhes da Acomodação</h4>
-</div>
-  </div>
-  <div class="container mt-4" style="border-radius: 15px; background-color: #EBEBEB;">
-    <div class="card-body my-2">
-      <p>
-        Sua estadia em <strong><%= @accommodation.name.titleize %></strong>, ( <%= @accommodation.category %> ),
-        localizada em <%= @accommodation.address %>, com capacidade para <%= @accommodation.capacity %> <%= @accommodation.capacity == 1 ? 'pessoa' : 'pessoas' %>,
-        tem inicio em <%= @accommodation.checkin_time.strftime('%d/%m/%Y às %H:%M') %>.
-        Com check-out previsto para <%= @accommodation.checkout_time.strftime('%d/%m/%Y às %H:%M') %>.
-        O Valor total da reserva é </strong> R$ <%= number_to_currency(@accommodation.price, unit: "", separator: ",", delimiter: ".") %></p>.
-        Você pode encontrar mais informações <a href="<%= @accommodation.url %>" target="_blank">aqui</a>.
-      </p>
+<div class="container" style="margin-bottom: 3;">
+    <div class="card mt-4" style="width: 100%; border-radius: 15px; background-color: #EBEBEB ">
+      <div class="banner-accommodation" style="background-image: url('accommodation.jpg'); background-size: cover; background-position: center; height: 300ox%">
+      <%= image_tag('accommodation.jpg', alt: 'Seu Banner', class: 'img-fluid', style: 'width: 100%; height: 200px;' ) %>
+      <h4 class="display-7" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ffffff;"></h4>
+      </div>
     </div>
-  <br>
-  <%= link_to "Editar acomodação", edit_accommodation_path(@accommodation), class: "btn btn-primary" %>
-  <%= link_to "Voltar para Viagem", trip_path(@accommodation.trip), class: 'btn btn-primary' %>
+</div>
+  <div class="container mt-4" style="border-radius: 15px; background-color: #fffff;">
+    <div class="note">
+      <div class="card-body my-2" style="font-family: 'Nome da Fonte', sans-serif; font-size: 16px;">
+        <p><br>
+          Sua estadia em <strong><%= @accommodation.name.titleize %></strong>, (<%= @accommodation.category.titleize %>),
+          localizada em <%= @accommodation.address.titleize %>, com capacidade para <%= @accommodation.capacity %> <%= @accommodation.capacity == 1 ? 'pessoa' : 'pessoas' %>,
+          tem inicio em <%= @accommodation.checkin_time.strftime('%d/%m/%Y às %H:%M') %>.
+          Com check-out previsto para <%= @accommodation.checkout_time.strftime('%d/%m/%Y às %H:%M') %>.
+          O Valor total da reserva é <strong> R$ <%= number_to_currency(@accommodation.price, unit: "", separator: ",", delimiter: ".") %></strong>.</p>
+          Você pode encontrar mais informações <a href="<%= @accommodation.url %>" target="_blank">aqui</a>.
+      </div>
+    <div class="note-corner"></div>
+    <br>
+     <div class="show-accommodation">
+                  <%= link_to edit_accommodation_path(@accommodation), class: 'accommodation-card-button' do %>
+                    <i class="fa-solid fa-pen-to-square"></i> Editar
+                  <% end %> </div> <br>
+                  
+       <%= link_to "", trip_path(@accommodation.trip), class: "fa-solid fa-arrow-left return-link" %>
 </div>
