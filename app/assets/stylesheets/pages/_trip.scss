@@ -176,6 +176,12 @@ a {
   display: flex;
   justify-content: space-between
 }
+.ticket-card-details-item-seat {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 72px;
+
+}
 .ticket-card-price {
   font-size: 20px;
   font-weight: bold;
