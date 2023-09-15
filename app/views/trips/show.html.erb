@@ -70,14 +70,22 @@
                   </div>
                 </div>
                 <div class="ticket-card-details">
-                  <div class="ticket-card-details-item">
+                  <div class="ticket-card-details-item-seat">
                     <p><strong>Assento:</strong></p>
                     <p><%= ticket.seat || 'Não selecionado' %></p>
                   </div>
                   <div class="ticket-card-details-item">
+
+                  <%= link_to ticket_path(ticket) do %>
+                    <i class="fa-solid fa-circle-info fa-2xl" style="color: #878787;"></i>
+                  <% end %>
+
+
+
                     <p><strong>Portão:</strong></p>
                     <p><%= ticket.gate || 'Não informado' %></p>
                   </div>
+
                 </div>
                 <!-- Essa div precisa ser editada pra ficar melhor no card -->
                 <div class="ticket-card-user-info">
