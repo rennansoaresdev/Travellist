@@ -10,7 +10,6 @@ local:
 cloudinary:
   service: Cloudinary
   folder: <%= Rails.env %>
-  CLOUDINARY_URL=cloudinary://632432663498812:eICvrOoI1TLUDqCV-wI3JDneXU4@dmduttlvv
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
