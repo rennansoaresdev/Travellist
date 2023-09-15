@@ -176,3 +176,10 @@ $grey: #6c6c6c;
 		}
 	}
 }
+.profile-tickets {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
+  margin-left: 10px;
+}
