@@ -81,8 +81,14 @@
                 </div>
                 <!-- Essa div precisa ser editada pra ficar melhor no card -->
                 <div class="ticket-card-user-info">
-                  <p>Acidionado por:</p>
-                  <%= image_tag 'user-placeholder.png', alt: current_user.first_name, class: 'avatar' %>
+                  <div class="profile-tickets">
+                    <p>Adicionado por:</p>
+                    <% if current_user.photo.present? %>
+                      <%= image_tag current_user.photo, class: 'avatar' %>
+                    <% else %>
+                      <%= image_tag "user-placeholder.png", class: 'avatar' %>
+                    <% end %>
+                  </div>
                 </div>
                 <div class="ticket-card-options">
                   <%= link_to edit_ticket_path(ticket), class: 'trip-card-button' do %>
