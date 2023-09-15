@@ -174,21 +174,26 @@ a {
 }
 .ticket-card-details-item {
   display: flex;
-  justify-content: space-between
-}
-.ticket-card-details-item-seat {
-  display: flex;
   justify-content: space-between;
-  margin-left: 72px;
+  align-items: center;
 
+  p {
+    padding: 0;
+    margin: 0;
+  }
 }
+// .ticket-card-details-item-seat {
+//   display: flex;
+//   justify-content: space-between;
+//   margin-left: 72px;
+// }
 .ticket-card-price {
   font-size: 20px;
   font-weight: bold;
   color: #dd4725;
   position: absolute;
   top: 70%;
-  left: 60%;
+  left: 63%;
 }
 .ticket-card-user-info {
   position: absolute;
