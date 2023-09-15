@@ -1,4 +1,5 @@
 <div class="header-back-title-action mt-4 mb-4">
+
   <%= link_to root_path do %>
     <i class="fa-solid fa-arrow-left fa-xl" style="color: #7a7a7a;"></i>
   <% end %>
@@ -34,8 +35,8 @@
 
 
         <h4><%= trip.name %></h4>
-        <p>Início: <%= trip.start_date %></p>
-        <p>Fim: <%= trip.end_date %></p>
+        <p>Início: <%= trip.start_date.strftime('%d/%m/%Y') %></p>
+        <p>Fim: <%= trip.end_date.strftime('%d/%m/%Y') %></p>
         <div class="user">
           <% if current_user.photo.present? %>
             <%= image_tag current_user.photo, class: 'avatar' %>
