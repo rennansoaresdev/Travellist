@@ -34,8 +34,8 @@
 
 
         <h4><%= trip.name %></h4>
-        <p>Início: <%= trip.start_date %></p>
-        <p>Fim: <%= trip.end_date %></p>
+        <p>Início: <%= trip.start_date.strftime('%d/%m/%Y') %></p>
+        <p>Fim: <%= trip.end_date.strftime('%d/%m/%Y') %></p>
         <div class="user">
           <% if current_user.photo.present? %>
             <%= image_tag current_user.photo, class: 'avatar' %>
