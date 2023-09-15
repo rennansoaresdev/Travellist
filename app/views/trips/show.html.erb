@@ -183,11 +183,11 @@
         <% if @trip.tasks.present? %>
           <ul class="list-unstyled my-3 overflow-auto">
             <% @trip.tasks.order(:done, :description).each do |task| %>
-              <li>
+              <li  class="mb-3">
                 <div class="form-check" data-controller='task'>
                   <div class="post-it">
                     <div class="fold"></div>
-                      <div class="content">
+                    <div class="content" style="max-width: 100%; word-wrap: break-word;">
                       <input class="form-check-input" type="checkbox" name="done" id="<%= "task-#{task.id}" %>"
                             <%= "checked" if task.done? %>
                             data-action="click->task#toggleDone"
@@ -205,6 +205,7 @@
                       <%= link_to task_path(task), data: { turbo_method: :delete } do %>
                         <i class="fa-solid fa-trash-can"></i>
                       <% end %>
+
                     </div>
                   </div>
                 </div>
