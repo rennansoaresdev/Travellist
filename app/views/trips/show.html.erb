@@ -53,53 +53,53 @@
         <% if @trip.tickets.present? %>
           <ul class="trip-card-group">
             <% @trip.tickets.order(:updated_at).take(4).each do |ticket| %>
-              <li class="trip-ticket-card">
-                <div class="ticket-card-location">
-                  <div class="ticket-card-location-info">
-                    <!-- Funciona melhor com a sigla do aeroporto -->
-                    <p class="ticket-card-location-name"><%= ticket.origin.first(3) %></p>
-                    <p class="ticket-card-location-time"><%= ticket.start_time.strftime("%H:%M") %></p>
+                <li class="trip-ticket-card">
+                  <div class="ticket-card-location">
+                    <div class="ticket-card-location-info">
+                      <!-- Funciona melhor com a sigla do aeroporto -->
+                      <p class="ticket-card-location-name"><%= ticket.origin.first(3) %></p>
+                      <p class="ticket-card-location-time"><%= ticket.start_time.strftime("%H:%M") %></p>
+                    </div>
+                    <div>
+                      <span><i class="fa-solid fa-plane"></i></span>
+                      <p><%= "#{ticket.duration[:hours]}h" %><%= "#{ticket.duration[:minutes]}" unless ticket.duration[:minutes].blank? %></p>
+                    </div>
+                    <div class="ticket-card-location-info">
+                      <p class="ticket-card-location-name"><%= ticket.destination.first(3) %></p>
+                      <p class="ticket-card-location-time"><%= ticket.end_time.strftime("%H:%M") %></p>
+                    </div>
                   </div>
-                  <div>
-                    <span><i class="fa-solid fa-plane"></i></span>
-                    <p><%= "#{ticket.duration[:hours]}h" %><%= "#{ticket.duration[:minutes]}" unless ticket.duration[:minutes].blank? %></p>
+                  <div class="ticket-card-details">
+                    <div class="ticket-card-details-item">
+                      <p><strong>Assento:</strong></p>
+                      <p><%= ticket.seat || 'Não selecionado' %></p>
+                    </div>
+                    <div class="ticket-card-details-item">
+                      <p><strong>Portão:</strong></p>
+                      <p><%= ticket.gate || 'Não informado' %></p>
+                    </div>
                   </div>
-                  <div class="ticket-card-location-info">
-                    <p class="ticket-card-location-name"><%= ticket.destination.first(3) %></p>
-                    <p class="ticket-card-location-time"><%= ticket.end_time.strftime("%H:%M") %></p>
+                  <!-- Essa div precisa ser editada pra ficar melhor no card -->
+                  <div class="ticket-card-user-info">
+                    <div class="profile-tickets">
+                      <p>Acidionado por:</p>
+                        <% if current_user.photo.present? %>
+                          <%= image_tag current_user.photo, class: 'avatar' %>
+                        <% else %>
+                          <%= image_tag "user-placeholder.png", class: 'avatar' %>
+                        <% end %>
+                        </div>
+                    </div>
+                  <div class="ticket-card-options">
+                    <%= link_to edit_ticket_path(ticket), class: 'trip-card-button' do %>
+                      <i class="fa-solid fa-pen-to-square"></i> Editar
+                    <% end %>
+                    <%= link_to ticket_path(ticket), class: 'trip-card-button', data: { turbo_method: :delete, turbo_confirm: 'Deseja deletar a passagem?' } do %>
+                      <i class="fa-solid fa-trash-can"></i>
+                    <% end %>
                   </div>
-                </div>
-                <div class="ticket-card-details">
-                  <div class="ticket-card-details-item">
-                    <p><strong>Assento:</strong></p>
-                    <p><%= ticket.seat || 'Não selecionado' %></p>
-                  </div>
-                  <div class="ticket-card-details-item">
-                    <p><strong>Portão:</strong></p>
-                    <p><%= ticket.gate || 'Não informado' %></p>
-                  </div>
-                </div>
-                <!-- Essa div precisa ser editada pra ficar melhor no card -->
-                <div class="ticket-card-user-info">
-                  <div class="profile-tickets">
-                    <p>Acidionado por:</p>
-                      <% if current_user.photo.present? %>
-                        <%= image_tag current_user.photo, class: 'avatar' %>
-                      <% else %>
-                        <%= image_tag "user-placeholder.png", class: 'avatar' %>
-                      <% end %>
-                      </div>
-                  </div>
-                <div class="ticket-card-options">
-                  <%= link_to edit_ticket_path(ticket), class: 'trip-card-button' do %>
-                    <i class="fa-solid fa-pen-to-square"></i> Editar
-                  <% end %>
-                  <%= link_to ticket_path(ticket), class: 'trip-card-button', data: { turbo_method: :delete, turbo_confirm: 'Deseja deletar a passagem?' } do %>
-                    <i class="fa-solid fa-trash-can"></i>
-                  <% end %>
-                </div>
-                <h4 class="ticket-card-price"><%= number_to_currency ticket.price, unit: 'R$ ', precision: 2, separator: ',', delimiter: '.' %></p>
-              </li>
+                  <h4 class="ticket-card-price"><%= number_to_currency ticket.price, unit: 'R$ ', precision: 2, separator: ',', delimiter: '.' %></h4>
+                </li>
             <% end %>
           </ul>
         <% else %>
