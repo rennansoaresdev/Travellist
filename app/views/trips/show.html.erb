@@ -70,23 +70,25 @@
                   </div>
                 </div>
                 <div class="ticket-card-details">
-                  <div class="ticket-card-details-item-seat">
-                    <p><strong>Assento:</strong></p>
-                    <p><%= ticket.seat || 'Não selecionado' %></p>
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-3">
+                      <%= link_to ticket_path(ticket) do %>
+                        <i class="fa-solid fa-circle-info fa-2xl" style="color: #878787;"></i>
+                      <% end %>
+                    </div>
+                    <div class="col-9">
+                      <div class="ticket-card-details-item">
+                        <p><strong>Assento:</strong></p>
+                        <p><%= ticket.seat || 'Não selecionado' %></p>
+                      </div>
+                      <div class="ticket-card-details-item">
+                        <p><strong>Portão:</strong></p>
+                        <p><%= ticket.gate || 'Não informado' %></p>
+                      </div>
+                    </div>
                   </div>
-                  <div class="ticket-card-details-item">
-
-                  <%= link_to ticket_path(ticket) do %>
-                    <i class="fa-solid fa-circle-info fa-2xl" style="color: #878787;"></i>
-                  <% end %>
-
-
-
-                    <p><strong>Portão:</strong></p>
-                    <p><%= ticket.gate || 'Não informado' %></p>
-                  </div>
-
                 </div>
+
                 <!-- Essa div precisa ser editada pra ficar melhor no card -->
                 <div class="ticket-card-user-info">
                   <div class="profile-tickets">
@@ -149,7 +151,7 @@
                     <div class="col-6 col-md-6">
                       <h5 class="fw-bold"><%= accommodation.name.titleize %></h5>
                       <p><%= accommodation.category %></p>
-                      <p>Espaço para <%= accommodation.capacity %> pessoas</p>
+                      <p><%= accommodation.capacity %> pessoas</p>
                       <% checkin_time = accommodation.checkin_time %>
                       <% checkout_time = accommodation.checkout_time %>
                       <% if checkin_time.present? && checkout_time.present? %>
@@ -180,10 +182,9 @@
       <div class="trip-section">
         <h2>Tarefas</h2>
         <button id="open-task-form-button" class="trip-section-btn-add">
-          <i class="fa-solid fa-circle-plus fa-2xl btn-plus"></i>
-          <i class="fa-solid fa-minus" style="display: none;"></i>
+          <i id="btn-task-plus" class="fa-solid fa-circle-plus fa-2xl btn-plus"></i>
         </button>
-        <div id="add-task-form" style="display: none;">
+        <div id="add-task-form" class="d-none">
           <%= simple_form_for [@trip, @task], remote: true do |f|%>
             <%= f.input :description, as: :string,
                         label: 'Descrição da tarefa:',
@@ -236,30 +237,16 @@
 </div>
 
 <%= render "members/modal", trip: @trip, member: @member %>
+<script>
+// Use JavaScript para mostrar/ocultar o formulário de criação de tarefa
+  document.getElementById('open-task-form-button').addEventListener('click', (event) => {
+    const formDiv = document.getElementById('add-task-form');
 
- <script>
-  // Use JavaScript para mostrar/ocultar o formulário de criação de tarefa
-  document.getElementById('open-task-form-button').addEventListener('click', function() {
-    var formDiv = document.getElementById('add-task-form');
-    var button = document.getElementById('open-task-form-button');
-    var plusIcon = button.querySelector('.fa-plus');
-    var minusIcon = button.querySelector('.fa-minus');
-
-    if (formDiv.style.display === 'none' || formDiv.style.display === '') {
-      formDiv.style.display = 'block';
-      plusIcon.style.display = 'none';
-      minusIcon.style.display = 'inline-block';
-
-      button.classList.add('btn-primary');
-      button.classList.remove('btn-success');
+    formDiv.classList.toggle('d-none');
+    if (formDiv.classList.contains('d-none')) {
+      event.target.outerHTML = '<i id="btn-task-plus" class="fa-solid fa-circle-plus fa-2xl btn-plus"></i>'
     } else {
-      formDiv.style.display = 'none';
-      plusIcon.style.display = 'inline-block';
-      minusIcon.style.display = 'none';
-
-      button.classList.add('btn-success');
-      button.classList.remove('btn-primary');
+      event.target.outerHTML = '<i id="btn-task-minus" class="fa-solid fa-circle-minus btn-plus"></i>'
     }
-    console.log('teste');
   });
 </script>

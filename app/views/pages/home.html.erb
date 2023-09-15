@@ -99,9 +99,7 @@
 <nav class="mobile-nav">
     <% if current_user && current_user.photo.present? %>
       <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-        <div class="avatar">
-          <%= cl_image_tag current_user.photo.key, width: 30, height: 30 %>
-        </div>
+          <%= cl_image_tag current_user.photo.key, class: 'avatar' %>
       <% end %>
       <% elsif current_user.nil? %>
         <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
@@ -110,10 +108,8 @@
           </div>
         <% end %>
       <% else %>
-      <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
-        <div class="avatar">
-          <%= image_tag 'user-placeholder.png', width: 30, height: 30 %>
-        </div>
+      <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+          <%= image_tag 'user-placeholder.png', class: 'avatar' %>
       <% end %>
     <% end %>
 
@@ -127,14 +123,16 @@
       <% end %>
     <% end %>
 
-    <% if current_user %>
-      <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+    <%# Comentando o ícone de comentários %>
+
+    <%# <% if current_user
+      <%= link_to trips_path, class: 'bloc-icon', style: 'text-decoration: none;' do
         <i class="far fa-comment-dots"></i>
-      <% end %>
-    <% else %>
-      <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do %>
+      <% end
+    <% else
+      <%= link_to new_user_session_path, class: 'bloc-icon', style: 'text-decoration: none;' do
         <i class="far fa-comment-dots"></i>
-      <% end %>
+      <% end
     <% end %>
 
     <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "bloc-icon", style: 'text-decoration: none;' do %>
