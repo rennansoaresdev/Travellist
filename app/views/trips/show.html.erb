@@ -166,10 +166,9 @@
       <div class="trip-section">
         <h2>Tarefas</h2>
         <button id="open-task-form-button" class="trip-section-btn-add">
-          <i class="fa-solid fa-circle-plus fa-2xl btn-plus"></i>
-          <i class="fa-solid fa-minus" style="display: none;"></i>
+          <i id="btn-task-plus" class="fa-solid fa-circle-plus fa-2xl btn-plus"></i>
         </button>
-        <div id="add-task-form" style="display: none;">
+        <div id="add-task-form" class="d-none">
           <%= simple_form_for [@trip, @task], remote: true do |f|%>
             <%= f.input :description, as: :string,
                         label: 'Descrição da tarefa:',
@@ -218,27 +217,14 @@
 <%= render "members/modal", trip: @trip, member: @member %>
  <script>
   // Use JavaScript para mostrar/ocultar o formulário de criação de tarefa
-  document.getElementById('open-task-form-button').addEventListener('click', function() {
-    var formDiv = document.getElementById('add-task-form');
-    var button = document.getElementById('open-task-form-button');
-    var plusIcon = button.querySelector('.fa-plus');
-    var minusIcon = button.querySelector('.fa-minus');
+  document.getElementById('open-task-form-button').addEventListener('click', (event) => {
+    const formDiv = document.getElementById('add-task-form');
 
-    if (formDiv.style.display === 'none' || formDiv.style.display === '') {
-      formDiv.style.display = 'block';
-      plusIcon.style.display = 'none';
-      minusIcon.style.display = 'inline-block';
-
-      button.classList.add('btn-primary');
-      button.classList.remove('btn-success');
+    formDiv.classList.toggle('d-none');
+    if (formDiv.classList.contains('d-none')) {
+      event.target.outerHTML = '<i id="btn-task-plus" class="fa-solid fa-circle-plus fa-2xl btn-plus"></i>'
     } else {
-      formDiv.style.display = 'none';
-      plusIcon.style.display = 'inline-block';
-      minusIcon.style.display = 'none';
-
-      button.classList.add('btn-success');
-      button.classList.remove('btn-primary');
+      event.target.outerHTML = '<i id="btn-task-minus" class="fa-solid fa-circle-minus btn-plus"></i>'
     }
-    console.log('teste');
   });
 </script>
